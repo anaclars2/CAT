@@ -2346,6 +2346,7 @@ MonoBehaviour:
   dialogo: {fileID: 466569262}
   skinsManager: {fileID: 1561785284}
   delaySprite: 0.35
+  audioSource: {fileID: 0}
 --- !u!1 &385313212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3893,7 +3894,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 200
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -6075,7 +6076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &870585445
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11851,7 +11852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1632400930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12120,7 +12121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15343,7 +15344,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1561785284}
         m_TargetAssemblyTypeName: SkinsManager, Assembly-CSharp
         m_MethodName: ComprarSkin
         m_Mode: 1

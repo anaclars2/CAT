@@ -59,6 +59,15 @@ public class DialogueManagerInk : MonoBehaviour
     bool isLuna = false;
     bool isJoe = false;
 
+    [Header("Audio")]
+    AudioClip audioClip_dialogo;
+    public AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+    }
+
     private void Start()
     {
         dialogo.text = "";
@@ -171,8 +180,8 @@ public class DialogueManagerInk : MonoBehaviour
         {
             // limpando o texto e o estado atual antes de exibir a nova fala
             dialogo.text = "";
-            indiceChar = 0; 
-            timerTypeWritter = 0; 
+            indiceChar = 0;
+            timerTypeWritter = 0;
 
             // se o texto ja estiver completo, avançar para a proxima fala
             textoAtual = historiaAtual.Continue(); // dialogo.text = historiaAtual.Continue();
