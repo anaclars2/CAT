@@ -9,12 +9,19 @@ using TMPro;
 
 public class SkinsManager : MonoBehaviour, IDataPersistence
 {
+    [Header("Tipo Cena")]
+    public bool isNovel = false;
+
     [Header("Skins e Gerenciamento")]
     public bool[] skins_desbloqueadas = new bool[3];
     public GameManager gameManager;
     public GameObject censura;
     PostProcessVolume volume;
     ColorGrading colorGrading;
+    public int skinEscolhida_indice; 
+
+    [Header("Camera")]
+    public GameObject objectCamera;
 
     [Header("UI e Navegação")]
     public Vector3[] posicoesObjetos;
@@ -33,26 +40,32 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        volume = this.gameObject.GetComponent<PostProcessVolume>();
-        if (volume == null) { Debug.LogError("Post processing volume nulo >:C"); }
-        if (volume.profile.TryGetSettings<ColorGrading>(out colorGrading))
+        if (isNovel == false)
         {
-            Debug.Log("Color grading encontrado!");
+            volume = objectCamera.gameObject.GetComponent<PostProcessVolume>();
+            if (volume == null) { Debug.LogError("Post processing volume nulo >:C"); }
+            if (volume.profile.TryGetSettings<ColorGrading>(out colorGrading))
+            {
+                Debug.Log("Color grading encontrado!");
+            }
+
+            // adicionando listeners para os botoes
+            botaoA.onClick.AddListener(MoverParaProximo);
+            botaoB.onClick.AddListener(MoverParaAnterior);
+
+            Atualizar();
+            VerificarCensura();
         }
-
-        // adicionando listeners para os botoes
-        botaoA.onClick.AddListener(MoverParaProximo);
-        botaoB.onClick.AddListener(MoverParaAnterior);
-
-        Atualizar();
-        VerificarCensura();
     }
 
     void Update()
     {
-        Debug.Log($"INDICE OBJETO ATUAL: {objetoAtual_indice} z STATUS OBJETO ATUAL: {skins_desbloqueadas[objetoAtual_indice]}");
-        VerificarCensura();
-        peixe_moeda.text = gameManager.peixe_moeda.ToString();
+        if (isNovel == false)
+        {
+            Debug.Log($"INDICE OBJETO ATUAL: {objetoAtual_indice} z STATUS OBJETO ATUAL: {skins_desbloqueadas[objetoAtual_indice]}");
+            VerificarCensura();
+            peixe_moeda.text = gameManager.peixe_moeda.ToString();
+        }
     }
 
     public void ComprarSkin()
@@ -74,6 +87,11 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
         {
             SoundManager.Instance.SomErro();
         }
+    }
+
+    public void EscolherSkin()
+    {
+
     }
 
     private void MoverParaProximo()
@@ -99,7 +117,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
     private void Atualizar()
     {
         // atualizando a posicao da camera e textos
-        transform.localPosition = posicoesObjetos[objetoAtual_indice]; // esse script deve estar na camera
+        objectCamera.transform.localPosition = posicoesObjetos[objetoAtual_indice]; // esse script deve estar na camera
         Debug.Log($"posicaoObjeto: {posicoesObjetos[objetoAtual_indice]}");
         nomeSkin.text = nomes[textos_indice];
         descricaoSkin.text = descricoes[textos_indice];

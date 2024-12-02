@@ -22,6 +22,26 @@ public class VolumeController : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (GameObject.Find("slider-master") == true && boolMaster == false)
+        {
+            slider_volume_master = GameObject.Find("slider-master").GetComponent<Slider>();
+            slider_volume_master.value = PlayerPrefs.GetFloat("volumeMASTERKey", 0.75f);
+            boolMaster = true;
+        }
+        if (GameObject.Find("slider-sfx") == true && boolSfx == false)
+        {
+            slider_volume_sfx = GameObject.Find("slider-sfx").GetComponent<Slider>();
+            slider_volume_sfx.value = PlayerPrefs.GetFloat("VolumeSFXKey", 0.75f);
+            boolSfx = true;
+        }
+
+        if (GameObject.Find("slider-musica") == true && boolMusic == false)
+        {
+            slider_volume_musics = GameObject.Find("slider-musica").GetComponent<Slider>();
+            slider_volume_musics.value = PlayerPrefs.GetFloat("volumeMUSICSKey", 0.75f);
+            boolMusic = true;
+        }
     }
 
     private void Update()
@@ -97,18 +117,21 @@ public class VolumeController : MonoBehaviour
 
         // salvando o valor no PlayerPrefs
         PlayerPrefs.SetFloat("volumeMASTERKey", volume);
+        Debug.Log("setvolumeMaster: " + volume);
     }
 
     public void SetVolumeMusic(float volume)
     {
         audio_mixer.SetFloat("VolumeMUSICS", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("volumeMUSICSKey", volume);
+        Debug.Log("setvolumeMusic: " + volume);
     }
 
     public void SetVolumeSFX(float volume)
     {
         audio_mixer.SetFloat("VolumeSFX", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("VolumeSFXKey", volume);
+        Debug.Log("setvolumeSfx: " + volume);
     }
 
     private void OnApplicationQuit()

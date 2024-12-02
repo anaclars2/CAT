@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    AudioController audioController;
+    public AudioController audioController;
 
     // lista de musicas
     // 0 - fazenda
@@ -22,7 +22,8 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
+        // audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
+        if (audioController == null) { Debug.Log("AudioController nulo"); }
     }
 
     public void MusicaFazenda()
