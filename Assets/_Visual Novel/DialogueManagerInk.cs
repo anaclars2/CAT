@@ -6,15 +6,16 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class DialogueManagerInk : MonoBehaviour
 {
     // ink
     Story historiaAtual;
-    public TextAsset inkJSON;
+    [SerializeField] TextAsset inkJSON;
     bool escolhasAtivas = false;
-    public Animator animatorSprite_Joe;
-    public Animator animatorSprite_Luna;
+    [SerializeField] Animator animatorSprite_Joe;
+    [SerializeField] Animator animatorSprite_Luna;
 
     // efeito maquina de escrever
     string textoAtual = "";
@@ -22,21 +23,21 @@ public class DialogueManagerInk : MonoBehaviour
     int indiceChar; // indice do char do texto atual
     [Header("Efeito TypeWritter")]
     float timerTypeWritter;
-    public float delayTypeWritter;
+    [SerializeField] float delayTypeWritter = 0.08f;
 
     [Header("Escolhas UI")]
     public GameObject[] escolhas;
     TMP_Text[] textoEscolhas;
 
     [Header("Dialogo UI")]
-    public TMP_Text nomeExibicao;
+    [SerializeField] TMP_Text nomeExibicao;
     // public Image spriteExibicaoA, spriteExibicaoB; // onde deve passar as animacoes dos personagem
     public TMP_Text dialogo;
 
     const string speakerTAG = "speaker"; // quem esta falando no momento 
 
     [Header("Sprite")]
-    public SkinsManager skinsManager;
+    [SerializeField] SkinsManager skinsManager;
 
     const string portraitTAG_LunaA = "portraitLunaA";
     const string portraitTAG_LunaB = "portraitLunaB";
@@ -53,19 +54,30 @@ public class DialogueManagerInk : MonoBehaviour
     string spriteValor_NaoFalar = "";
     bool mudarSprite = false;
     float timerSprite;
-    public float delaySprite;
+    [SerializeField] float delaySprite = 0.8f;
 
     bool spriteA = false; // spriteA é sempre a sem falar
     bool isLuna = false;
     bool isJoe = false;
 
     [Header("Audio")]
-    AudioClip audioClip_dialogo;
-    public AudioSource audioSource;
+    [SerializeField] AudioClip[] audioClip_dialogo;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] bool pararSource = false;
+    bool narradorSom = false;
+
+    [Range(1, 5)][SerializeField] int frequenciaAudio = 2;
+    float minPitch = 0.65f;
+    float maxPitch = 2;
+
+    // vai randomizar uma primeira vez o valor (tom e clipe) de uma letra, exemplo "a"
+    // e o reutilizar sempre o mesmo valor deixando parecido com uma alfabeto
+    [SerializeField] bool deixarPrevisivel;
 
     private void Awake()
     {
-        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource = GameObject.Find("AudioSourceSFX").GetComponent<AudioSource>();
+        if (audioSource == null) { Debug.Log("nao consegui achar audioSource"); }
     }
 
     private void Start()
@@ -86,8 +98,7 @@ public class DialogueManagerInk : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"MUDARSPRITE == {mudarSprite}");
-
+        #region TypeWritter
         // efeito maquina de escrever
         if (efeitoMaquina == true && indiceChar < textoAtual.Length)
         {
@@ -97,10 +108,22 @@ public class DialogueManagerInk : MonoBehaviour
                 // adicionando o proximo caractere
                 dialogo.text = dialogo.text + textoAtual[indiceChar];
 
-                // avancando para o proximo caractere
+                // reproduzindo som do narrador
+                if (narradorSom == true)
+                {
+                    PlaySom(indiceChar, dialogo.text[indiceChar]);
+                }
+
+                else if (spriteA == false)
+                {
+                    PlaySom(indiceChar, dialogo.text[indiceChar]);
+                }
+
+                // avancando para o proximo caractere 
                 indiceChar++;
                 timerTypeWritter = 0;
             }
+
         }
         else
         {
@@ -116,7 +139,13 @@ public class DialogueManagerInk : MonoBehaviour
 
             mudarSprite = false;
         }
+        #endregion
 
+        MudarSprite();
+    }
+
+    void MudarSprite()
+    {
         if (mudarSprite == true)
         {
             timerSprite = timerSprite + Time.deltaTime;
@@ -131,12 +160,11 @@ public class DialogueManagerInk : MonoBehaviour
                 if (isLuna == true)
                 {
                     animatorSprite_Luna.Play(spriteValor_Falar);
-                    Debug.Log($"SPRITE FALAR == {spriteValor_Falar}");
+
                 }
                 else if (isJoe == true)
                 {
                     animatorSprite_Joe.Play(spriteValor_Falar);
-                    Debug.Log($"SPRITE FALAR == {spriteValor_Falar}");
                 }
             }
             else
@@ -144,13 +172,61 @@ public class DialogueManagerInk : MonoBehaviour
                 if (isLuna == true)
                 {
                     animatorSprite_Luna.Play(spriteValor_NaoFalar);
-                    Debug.Log($"SPRITE NAO FALAR == {spriteValor_NaoFalar}");
                 }
                 else if (isJoe == true)
                 {
                     animatorSprite_Joe.Play(spriteValor_NaoFalar);
-                    Debug.Log($"SPRITE NAO FALAR == {spriteValor_NaoFalar}");
                 }
+            }
+        }
+    }
+    void PlaySom(int numeroChar, char caractereAtual)
+    {
+        if (numeroChar % frequenciaAudio == 0) // a cada tres caracteres faz um audio
+        {
+            if (audioSource == true)
+            {
+                audioSource.Stop();
+            }
+
+            AudioClip clipAtual = null;
+            if (deixarPrevisivel == true)
+            {
+                int hashCode = caractereAtual.GetHashCode();
+
+                // escolhendo o clip para o "x" caractere
+                int previsivelIndex = hashCode % audioClip_dialogo.Length;
+                clipAtual = audioClip_dialogo[previsivelIndex];
+
+                // escolhendo o pitch para o "x" caractere
+                int minPitch_INT = (int)(minPitch * 100);
+                int maxPitch_INT = (int)(maxPitch * 100);
+                int pitchRange_INT = maxPitch_INT - minPitch_INT;
+
+                // verificando porque se for 0, vai dar erro :P
+                // basicamente, o minPitch_INT e maxPitch_INT nao podem ser os mesmos
+                if (pitchRange_INT != 0)
+                {
+                    int previsivelPitch_INT = (hashCode % pitchRange_INT) + minPitch_INT;
+                    float previsivelPitch = previsivelPitch_INT / 100f;
+                    audioSource.pitch = previsivelPitch;
+                }
+                else
+                {
+                    audioSource.pitch = minPitch;
+                }
+
+                audioSource.PlayOneShot(clipAtual);
+            }
+            else
+            {
+                // mudando o tom do audio
+                float randomPitch = UnityEngine.Random.Range(minPitch, maxPitch);
+                audioSource.pitch = randomPitch;
+
+                // randomizando
+                int randomClip = UnityEngine.Random.Range(0, audioClip_dialogo.Length);
+                audioSource.PlayOneShot(audioClip_dialogo[randomClip]);
             }
         }
     }
@@ -251,7 +327,7 @@ public class DialogueManagerInk : MonoBehaviour
         escolhasAtivas = false;
     }
 
-    public void ManipularTag(List<string> tagsAtuais) // sprite
+    void ManipularTag(List<string> tagsAtuais) // sprite
     {
         foreach (string tag in tagsAtuais)
         {
@@ -260,7 +336,7 @@ public class DialogueManagerInk : MonoBehaviour
             string[] separarTag = tag.Split(':');
             if (separarTag.Length != 2)
             {
-                Debug.LogError("Tag não apropriada");
+                Debug.LogError("tag nao apropriada");
             }
             string tagKey = separarTag[0].Trim();
             string tagValor = separarTag[1].Trim();
@@ -268,7 +344,7 @@ public class DialogueManagerInk : MonoBehaviour
             switch (tagKey)
             {
                 case speakerTAG:
-                    Debug.Log("speaker: " + tagValor);
+                    // Debug.Log("speaker: " + tagValor);
                     nomeExibicao.text = tagValor;
 
                     if (tagValor == "Narrador")
@@ -279,6 +355,7 @@ public class DialogueManagerInk : MonoBehaviour
                         mudarSprite = false;
                         isLuna = false;
                         isJoe = false;
+                        narradorSom = true;
                     }
                     break;
 
@@ -315,11 +392,13 @@ public class DialogueManagerInk : MonoBehaviour
 
                     isLuna = true;
                     isJoe = false;
+                    narradorSom = false;
                     break;
                 case portraitTAG_LunaB: // falar
                     spriteValor_Falar = "";
                     spriteValor_Falar = tagValor;
                     mudarSprite = true;
+                    narradorSom = false;
                     break;
 
                 case portraitTAG_Joe:
@@ -328,6 +407,7 @@ public class DialogueManagerInk : MonoBehaviour
 
                     isJoe = true;
                     isLuna = false;
+                    narradorSom = false;
 
                     if (skinsManager != null)
                     {

@@ -62,7 +62,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
     {
         if (isNovel == false)
         {
-            Debug.Log($"INDICE OBJETO ATUAL: {objetoAtual_indice} z STATUS OBJETO ATUAL: {skins_desbloqueadas[objetoAtual_indice]}");
+            // Debug.Log($"INDICE OBJETO ATUAL: {objetoAtual_indice} z STATUS OBJETO ATUAL: {skins_desbloqueadas[objetoAtual_indice]}");
             VerificarCensura();
             peixe_moeda.text = gameManager.peixe_moeda.ToString();
         }
@@ -118,7 +118,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
     {
         // atualizando a posicao da camera e textos
         objectCamera.transform.localPosition = posicoesObjetos[objetoAtual_indice]; // esse script deve estar na camera
-        Debug.Log($"posicaoObjeto: {posicoesObjetos[objetoAtual_indice]}");
+        // Debug.Log($"posicaoObjeto: {posicoesObjetos[objetoAtual_indice]}");
         nomeSkin.text = nomes[textos_indice];
         descricaoSkin.text = descricoes[textos_indice];
     }
