@@ -13,7 +13,10 @@ public class GameData
     public int total_distancia;
     public int total_moedas;
     public bool desviou_frutas;
-    public bool pegou_vacina;
+    public int skinEscolhida_indice;
+    public float volumeMaster;
+    public float volumeMusics;
+    public float volumeSfx;
 
     public string progresso_historia; // public int fala_atual
 
@@ -37,11 +40,15 @@ public class GameData
 
         }
 
+        this.skinEscolhida_indice = 0;
         this.total_distancia = 0;
         this.total_moedas = 0;
         this.desviou_frutas = false;
-        this.pegou_vacina = false;
 
         this.progresso_historia = "";
+
+        volumeMaster = 0;
+        volumeMusics = 0;
+        volumeSfx = 0;
     }
 }

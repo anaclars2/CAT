@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
@@ -22,18 +23,16 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
+
+        this.fileManipulator = new FilePersistenceManipulator(nomeArquivo);
+
+
     }
 
-    private void Start()
-    {
-        this.fileManipulator = new FilePersistenceManipulator(nomeArquivo);
-        // procurando todos os objetos que precisam de dados
-        this.obj_dataPersistences = FindAllPersistencesObjects();
-        LoadGame();
-    }
     public void NewGame()
     {
+        Debug.Log("criado um gameData");
         this.gameData = new GameData();
     }
     public void LoadGame()
@@ -42,10 +41,15 @@ public class DataPersistenceManager : MonoBehaviour
         this.gameData = fileManipulator.Load();
 
         // se nao achar entao criamos um novo jogo :D
-        if (this.gameData != null)
+        if (this.gameData == null)
         {
             Debug.Log("sem gameData, criando um novo");
             NewGame();
+        }
+
+        if (this.gameData == null)
+        {
+            Debug.Log("sem gameData ainda");
         }
 
         // em seguida, vamos enviar os dados desse arquivo gameData
@@ -57,6 +61,12 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
+        if (this.gameData == null)
+        {
+            Debug.LogError("gameData é null ao tentar salvar");
+            return;
+        }
+
         // vai passar os dados para os scripts os deixando atualizados
         foreach (IDataPersistence dataObj in obj_dataPersistences)
         {
@@ -71,11 +81,25 @@ public class DataPersistenceManager : MonoBehaviour
     // para salvar o jogo quando sairmos dele e quando darmos pause
     private void OnApplicationQuit()
     {
-        // SaveGame();
+        if (gameData != null)
+        {
+            SaveGame();
+        }
+        else
+        {
+            Debug.Log("onApplicationQuit gameData nulo");
+        }
     }
     private void OnApplicationPause(bool pause)
     {
-        // SaveGame();
+        if (gameData != null)
+        {
+            SaveGame();
+        }
+        else
+        {
+            Debug.Log("onApplicationPause gameData nulo");
+        }
     }
 
     List<IDataPersistence> FindAllPersistencesObjects()
@@ -84,9 +108,33 @@ public class DataPersistenceManager : MonoBehaviour
         // e implementem a interface de IDataPersistence
 
         // assim, estamos os contando
-        IEnumerable<IDataPersistence> dataObjetos = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        IEnumerable<IDataPersistence> dataObjetos = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
 
         // e em seguida os passando em uma lista
         return new List<IDataPersistence>(dataObjetos);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded+= OnSceneUnloaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // procurando todos os objetos que precisam de dados
+        this.obj_dataPersistences = FindAllPersistencesObjects();
+        LoadGame();
+    }
+
+    public void OnSceneUnloaded(Scene scene)
+    {
+        SaveGame();
     }
 }

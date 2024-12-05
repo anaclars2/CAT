@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
         // audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         if (audioController == null) { Debug.Log("AudioController nulo"); }

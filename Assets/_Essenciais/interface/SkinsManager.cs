@@ -6,47 +6,58 @@ using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using TMPro;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class SkinsManager : MonoBehaviour, IDataPersistence
 {
     [Header("Tipo Cena")]
-    public bool isNovel = false;
+    [SerializeField] bool isGame = false;
 
     [Header("Skins e Gerenciamento")]
     public bool[] skins_desbloqueadas = new bool[3];
-    public GameManager gameManager;
-    public GameObject censura;
+    [SerializeField] GameManager gameManager;
+    [SerializeField] GameObject censura;
+    [SerializeField] GameObject[] skinsGame = new GameObject[3];
     PostProcessVolume volume;
     ColorGrading colorGrading;
-    public int skinEscolhida_indice; 
+    public int skinEscolhida_indice;
 
     [Header("Camera")]
     public GameObject objectCamera;
 
     [Header("UI e Navegação")]
-    public Vector3[] posicoesObjetos;
-    public Text nomeSkin;
-    public Text descricaoSkin;
+    [SerializeField] Vector3[] posicoesObjetos;
+    [SerializeField] Text nomeSkin;
+    [SerializeField] Text descricaoSkin;
     public TMP_Text peixe_moeda;
 
     public string[] nomes;
     public string[] descricoes;
-    public Button botaoA;
-    public Button botaoB;
-    public Button botaoComprar;
+    [SerializeField] Button botaoA;
+    [SerializeField] Button botaoB;
 
-    private int objetoAtual_indice = 0;
-    private int textos_indice = 0;
+    int objetoAtual_indice = 0;
+    int textos_indice = 0;
+
+    private void Awake()
+    {
+        ConferirCena(SceneManager.GetActiveScene().buildIndex);
+        if (isGame == false)
+        {
+            AtualizarIndices(skinEscolhida_indice);
+        }
+    }
 
     void Start()
     {
-        if (isNovel == false)
+        if (isGame == false)
         {
             volume = objectCamera.gameObject.GetComponent<PostProcessVolume>();
             if (volume == null) { Debug.LogError("Post processing volume nulo >:C"); }
             if (volume.profile.TryGetSettings<ColorGrading>(out colorGrading))
             {
-                Debug.Log("Color grading encontrado!");
+                // Debug.Log("Color grading encontrado!");
             }
 
             // adicionando listeners para os botoes
@@ -56,71 +67,86 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
             Atualizar();
             VerificarCensura();
         }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (i != skinEscolhida_indice)
+                {
+                    skinsGame[i].SetActive(false);
+                }
+                else
+                {
+                    skinsGame[i].SetActive(true);
+                }
+            }
+        }
     }
 
     void Update()
     {
-        if (isNovel == false)
+        // Debug.Log($"skin escolhida:{skinEscolhida_indice} \nindice objeto atual: {objetoAtual_indice}");
+
+        if (isGame == false)
         {
             // Debug.Log($"INDICE OBJETO ATUAL: {objetoAtual_indice} z STATUS OBJETO ATUAL: {skins_desbloqueadas[objetoAtual_indice]}");
             VerificarCensura();
             peixe_moeda.text = gameManager.peixe_moeda.ToString();
         }
+
+        ConferirCena(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ComprarSkin()
     {
-        int precoSkin = 600 * (objetoAtual_indice + 1);
-        Debug.Log($"Tentando comprar skin {objetoAtual_indice} - Preço: {precoSkin}, Peixe-Moeda: {gameManager.peixe_moeda}");
-        if (gameManager.peixe_moeda >= precoSkin && !skins_desbloqueadas[objetoAtual_indice])
+        if (isGame == false)
         {
-            gameManager.peixe_moeda -= precoSkin;
-            skins_desbloqueadas[objetoAtual_indice] = true;
-            SoundManager.Instance.SomComprar();
-            Debug.Log($"Skin {objetoAtual_indice} desbloqueada!");
-            Debug.Log($"Peixe-Moeda: {gameManager.peixe_moeda}");
+            int precoSkin = 600 * (objetoAtual_indice + 1);
 
-            Atualizar();
-            VerificarCensura();
-        }
-        else
-        {
-            SoundManager.Instance.SomErro();
+            // Debug.Log($"Tentando comprar skin {objetoAtual_indice} - Preço: {precoSkin}, Peixe-Moeda: {gameManager.peixe_moeda}");
+
+            if (gameManager.peixe_moeda >= precoSkin && !skins_desbloqueadas[objetoAtual_indice])
+            {
+                gameManager.peixe_moeda -= precoSkin;
+                skins_desbloqueadas[objetoAtual_indice] = true;
+                SoundManager.Instance.SomComprar();
+                Debug.Log($"Skin {objetoAtual_indice} desbloqueada!");
+                Debug.Log($"Peixe-Moeda: {gameManager.peixe_moeda}");
+
+                Atualizar();
+                VerificarCensura();
+            }
+            else
+            {
+                SoundManager.Instance.SomErro();
+            }
         }
     }
 
-    public void EscolherSkin()
-    {
-
-    }
 
     private void MoverParaProximo()
     {
         // avancando para o proximo objeto
-        objetoAtual_indice = (objetoAtual_indice + 1) % posicoesObjetos.Length;
-        textos_indice = (textos_indice + 1) % nomes.Length;
-
-        Atualizar();
-        VerificarCensura();
+        AtualizarIndices((objetoAtual_indice + 1) % posicoesObjetos.Length);
     }
 
     private void MoverParaAnterior()
     {
         // voltando para o objeto anterior
-        objetoAtual_indice = (objetoAtual_indice - 1 + posicoesObjetos.Length) % posicoesObjetos.Length;
-        textos_indice = (textos_indice - 1 + nomes.Length) % nomes.Length;
-
-        Atualizar();
-        VerificarCensura();
+        AtualizarIndices((objetoAtual_indice - 1 + posicoesObjetos.Length) % posicoesObjetos.Length);
     }
 
     private void Atualizar()
     {
-        // atualizando a posicao da camera e textos
-        objectCamera.transform.localPosition = posicoesObjetos[objetoAtual_indice]; // esse script deve estar na camera
-        // Debug.Log($"posicaoObjeto: {posicoesObjetos[objetoAtual_indice]}");
-        nomeSkin.text = nomes[textos_indice];
-        descricaoSkin.text = descricoes[textos_indice];
+        if (objectCamera != null)
+        {
+            // atualizando a posicao da camera e textos
+            objectCamera.transform.localPosition = posicoesObjetos[objetoAtual_indice]; // esse script deve estar na camera
+
+            // Debug.Log($"posicaoObjeto: {posicoesObjetos[objetoAtual_indice]}");
+            nomeSkin.text = nomes[textos_indice];
+            descricaoSkin.text = descricoes[textos_indice];
+        }
     }
 
     private void VerificarCensura()
@@ -129,7 +155,10 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
         if (skins_desbloqueadas[objetoAtual_indice] == true)
         {
             // se a skin esta desbloqueada
-            censura.SetActive(false);
+            if (censura != null)
+            {
+                censura.SetActive(false);
+            }
             if (colorGrading != null)
             {
                 colorGrading.active = false;
@@ -138,21 +167,50 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
         else
         {
             // se a skin esta bloqueada
-            censura.SetActive(true);
+            if (censura != null)
+            {
+                censura.SetActive(true);
+            }
             if (colorGrading != null)
             {
                 colorGrading.active = true;
             }
         }
     }
-
-    public void SaveData(GameData d)
+    void AtualizarIndices(int novoIndice)
     {
-        // Implementar lógica de salvar
+        objetoAtual_indice = novoIndice;
+        skinEscolhida_indice = objetoAtual_indice;
+        textos_indice = objetoAtual_indice % nomes.Length;
+
+        Atualizar();
+        VerificarCensura();
     }
 
-    public void LoadData(GameData d)
+
+    public void SaveData(GameData data)
     {
-        // Implementar lógica de carregar
+        data.skins_desbloqueadas = this.skins_desbloqueadas;
+        data.skinEscolhida_indice = this.skinEscolhida_indice;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.skins_desbloqueadas = data.skins_desbloqueadas;
+        AtualizarIndices(data.skinEscolhida_indice);
+    }
+
+    void ConferirCena(int indice)
+    {
+        Debug.Log("indiceCena: " + indice);
+        Debug.Log("isGame: " + isGame);
+        if (indice == 0)
+        {
+            isGame = false;
+        }
+        else if (indice == 1) // significa que é o runner
+        {
+            isGame = true;
+        }
     }
 }

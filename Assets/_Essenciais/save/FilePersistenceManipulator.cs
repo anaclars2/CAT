@@ -25,7 +25,7 @@ public class FilePersistenceManipulator
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {
-                        leitor =  reader.ReadToEnd();
+                        leitor = reader.ReadToEnd();
                     }
                 }
 
