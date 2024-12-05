@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] SoundManager soundManager;
-    [SerializeField] GameManager manager;
-    [SerializeField] TouchManager touch;
-    [SerializeField] Animator animator;
-    [SerializeField] AnimationClip[] animationClip;
+    [Header("Managers")]
+    public SoundManager soundManager;
+    public GameManager manager;
+    public PowerupManager powerManager;
+    public TouchManager touch;
+
+    [Header("Animacao")]
+    // public Animator animator;
+    // public AnimationClip[] animationClip;
 
     [Header("Movimentacao")]
     [SerializeField] float velocidade = 20f;
     float swipe_minimo = 50f; // minimo para considerar um deslize ;D
-    Vector3 posicao_alvo;
-    Vector3 posicao_base; // posicao inicial, onde define no editor
-    [SerializeField] float altura_pulo;
+    Vector3 posicao_alvo, posicao_base;
+    public float altura_pulo;
 
     float timer = 0f;
     float wait_time = 0.5f;
@@ -26,162 +30,190 @@ public class Player : MonoBehaviour
     public bool power_ima = false;
     public bool cheat_vida_infinita = false;
     public int machucado = 0;
-    public bool em_luna = false;
-
-    [Header("Canvas")]
-    [SerializeField] GameObject feedback_machucado;
-    [SerializeField] GameObject tela_segunda_chance;
-    [SerializeField] GameObject tela_game;
-
-    public bool parar_input_player = false; // quando o player morrer
-    // public PlayerDataManager playerDataManager;
-
-    // machucado = 0, normal
-    // machucado = 1, lentidao
-    // machucado = 2, perdeu
-
-    int contador = 0;
+    public bool montariaLuna = false;
     bool recentemente_machucado = false; // garantir q nao vai receber dano 2x
+    public bool parar_input_player = false; // quando o player morrer
 
-    // trata-se das meshs para a alteracao de quando estiver montado e nao
-    #region EmLuna 
+    [Header("Elementos UI")]
+    // [SerializeField] GameObject tela_segunda_chance;
+    // [SerializeField] GameObject tela_game;
+    [SerializeField] TMP_Text texto_peixeMoeda;
+
     [Header("Mesh")]
-    [SerializeField] GameObject joe_luna;
-    [SerializeField] GameObject only_joe;
-    #endregion
+    // public GameObject lunaMesh;
 
-    public int powerupsPartida = 0;
-    public int danoFrutas = 0;
+    [HideInInspector] public int powerupsPartida = 0;
+    [HideInInspector] public int danoFrutas = 0;
+    int peixeMoedasPartida = 0;
     void Awake()
     {
         danoFrutas = 0;
         powerupsPartida = 0;
-        // machucado = 0;
+        machucado = 0;
 
         // para ele comecar com a posicao definida na cena
         posicao_alvo = transform.position;
         posicao_base = transform.position;
-
-        #region PlayerDataJson
-        // playerDataManager = new PlayerDataManager();
-        // playerDataManager.SalvarDados(this);
-        #endregion
     }
 
     void Update()
     {
-        if (em_luna == true)
-        {
-            joe_luna.SetActive(true);
-            only_joe.SetActive(false);
-        }
-        else
-        {
-            joe_luna.SetActive(false);
-            only_joe.SetActive(true);
-        }
+        texto_peixeMoeda.text = peixeMoedasPartida.ToString();
 
+        /* if (montariaLuna == true)
+         {
+             lunaMesh.SetActive(true);
+         }
+         else
+         {
+             lunaMesh.SetActive(false);
+         }*/
+
+        MovimentacaoUpdate();
+    }
+
+    public void MovimentacaoUpdate()
+    {
         #region Movimentacao
-        if (parar_input_player == false)
+        if (!parar_input_player)
         {
-            // movimentando continuamente o player para frente no eixo z
-            Vector3 nova_posicao_z = new Vector3(transform.position.x, transform.position.y, transform.position.z + velocidade * Time.deltaTime);
-
-            // movendo o player diretamente para a nova posicao com velocidade constante no eixo z
-            transform.position = nova_posicao_z;
+            // mantendo a posicao no eixo z fixa
+            transform.position = new Vector3(transform.position.x, transform.position.y, posicao_base.z);
 
             if (posicao_alvo != transform.position)
             {
-                // movendo o player diretamente a posicao alvo com uma velocidade constante
-                Vector3 nova_posicao_lateral = new Vector3(posicao_alvo.x, transform.position.y, transform.position.z);
+                // movendo o player diretamente a posição alvo no eixo x e y
+                Vector3 nova_posicao = new Vector3(posicao_alvo.x, Mathf.MoveTowards(transform.position.y, posicao_alvo.y, velocidade * Time.deltaTime), posicao_base.z);
+                transform.position = Vector3.MoveTowards(transform.position, nova_posicao, velocidade * Time.deltaTime);
 
-                // continuando movendo o player gradualmente ate chegar na posicao alvo
-                // garantindo que o movimento lateral nao afeta o eixo z
-                transform.position = Vector3.MoveTowards(transform.position, nova_posicao_lateral, velocidade * Time.deltaTime);
-            }
-        }
-
-        // verificando se o jogador esta pulando
-        if (posicao_alvo.y != transform.position.y)
-        {
-            transform.position = new Vector3(transform.position.x, Mathf.MoveTowards(transform.position.y, posicao_alvo.y, velocidade * Time.deltaTime), transform.position.z);
-
-            if (Mathf.Abs(transform.position.y - posicao_alvo.y) < 0.1f)
-            {
-                posicao_alvo.y = posicao_base.y;
+                // travando o valor de X em posicoes fixas
+                if (Mathf.Abs(posicao_alvo.x - transform.position.x) < 0.1f)
+                {
+                    if (transform.position.x > 1.5f)
+                    {
+                        transform.position = new Vector3(3, transform.position.y, posicao_base.z);
+                    }
+                    else if (transform.position.x < -1.5f)
+                    {
+                        transform.position = new Vector3(-3, transform.position.y, posicao_base.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(0, transform.position.y, posicao_base.z);
+                    }
+                }
             }
         }
         #endregion
-    }
 
+        #region Timer eixo y
+        // logica do timer para escorregar ou pular
+        if (escorregou_pulou)
+        {
+            if (timer >= 0f)
+            {
+                timer += Time.deltaTime;
+                if (timer >= wait_time)
+                {
+                    // forcando retorno ao chao
+                    posicao_alvo = new Vector3(transform.position.x, posicao_base.y, posicao_base.z);
+                    escorregou_pulou = false;
+
+                    // resetando o timer
+                    timer = 0f;
+                }
+            }
+        }
+
+        // garantindo que o jogador nao fique no ar apos o tempo de pulo
+        if (!escorregou_pulou && Mathf.Abs(transform.position.y - posicao_base.y) > 0.1f)
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.MoveTowards(transform.position.y, posicao_base.y, velocidade * Time.deltaTime), posicao_base.z);
+        }
+        #endregion
+    }
     public void Movimentacao()
     {
-        if (touch != null && parar_input_player == false)
+        if (touch != null && !parar_input_player)
         {
             Vector2 deslize_touch = touch.swipeDirection;
 
-            // verficando se o swipe é significativo o suficiente
+            // verificando se o swipe é significativo o suficiente
             if (deslize_touch.magnitude < swipe_minimo) return;
 
-            // verificando se o swipe no eixo x é maior que no eixo y
             if (Mathf.Abs(deslize_touch.x) > Mathf.Abs(deslize_touch.y) && timer == 0)
             {
-                // se o swipe foi maior no eixo y
-                if (transform.position.x == 0 || transform.position.x == 3 || transform.position.x == -3)
+                posicao_alvo.y = posicao_base.y;
+
+                // deslize na direcao positiva no eixo x
+                if (deslize_touch.x > 0)
                 {
-                    // se o swipe foi na direcao positiva no eixo y
-                    if (deslize_touch.y > 0)
+                    switch (transform.position.x)
                     {
-                        // animator e som :X
-                        if (em_luna != true)
-                        {
-                            animator.Rebind();
-                            animator.Play("pular");
-                        }
-                        else
-                        {
-
-                        }
-                        soundManager.SomPular();
-
-                        posicao_alvo = new Vector3(transform.position.x, altura_pulo, transform.position.z);
-                        Debug.Log("Player pulou");
-                        escorregou_pulou = true;
+                        case -3:
+                            posicao_alvo = new Vector3(0, transform.position.y, posicao_base.z);
+                            break;
+                        case 0:
+                            posicao_alvo = new Vector3(3, transform.position.y, posicao_base.z);
+                            break;
                     }
+                }
+                // deslize na direcao negativa no eixo x
+                else if (deslize_touch.x < 0)
+                {
+                    switch (transform.position.x)
+                    {
+                        case 3:
+                            posicao_alvo = new Vector3(0, transform.position.y, posicao_base.z);
+                            break;
+                        case 0:
+                            posicao_alvo = new Vector3(-3, transform.position.y, posicao_base.z);
+                            break;
+                    }
+                }
+            }
+            // se o deslize for maior no eixo y
+            else if (transform.position.x == 0 || transform.position.x == 3 || transform.position.x == -3)
+            {
+                if (deslize_touch.y > 0 && !escorregou_pulou)
+                {
+                    soundManager.SomPular();
+                    posicao_alvo = new Vector3(transform.position.x, altura_pulo, posicao_base.z);
+                    escorregou_pulou = true;
                 }
             }
         }
     }
 
     // coroutina com atraso de 2 segundos
-    private IEnumerator AcoesAposMorte()
-    {
-        yield return new WaitForSeconds(2f);
+    /*   private IEnumerator AcoesAposMorte()
+       {
+           yield return new WaitForSeconds(2f);
 
-        // executa as acoes apos o atraso
-        soundManager.MusicaSegundaChance();
-        feedback_machucado.SetActive(false);
-        tela_game.SetActive(false);
-        tela_segunda_chance.SetActive(true);
-        Time.timeScale = 0f;
-    }
+           // executa as acoes apos o atraso
+           soundManager.MusicaSegundaChance();
+          // tela_machucado.SetActive(false);
+           tela_game.SetActive(false);
+           tela_segunda_chance.SetActive(true);
+           Time.timeScale = 0f;
+       }*/
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.CompareTag("Frutas") || other.gameObject.CompareTag("Obstaculo")) && !recentemente_machucado)
+        if ((other.gameObject.CompareTag("Fruta") || other.gameObject.CompareTag("Obstaculo")) && !recentemente_machucado)
         {
             recentemente_machucado = true;
             if (power_invulnerabilidade == false && cheat_vida_infinita == false)
             {
                 machucado++;
-                feedback_machucado.SetActive(true);
+                // tela_machucado.SetActive(true);
             }
 
             if (machucado >= 2)
             {
-                if (em_luna != true)
+                if (montariaLuna != true)
                 {
-                    animator.SetTrigger("morreu");
+                    //animator.SetTrigger("morreu");
                 }
                 else
                 {
@@ -190,19 +222,20 @@ public class Player : MonoBehaviour
                 soundManager.SomMorrer();
                 parar_input_player = true;
 
-                StartCoroutine(AcoesAposMorte());
+                //StartCoroutine(AcoesAposMorte());
             }
 
-            if (other.gameObject.CompareTag("Frutas"))
+            if (other.gameObject.CompareTag("Fruta"))
             {
                 danoFrutas++;
             }
         }
 
         #region Pontuacao
-        else if (other.gameObject.CompareTag("MoedaPeixe"))
+        else if (other.gameObject.CompareTag("PeixeMoeda"))
         {
             manager.peixe_moeda++;
+            peixeMoedasPartida++;
             Destroy(other.gameObject);
         }
         #endregion
@@ -217,18 +250,19 @@ public class Player : MonoBehaviour
             switch (powerup)
             {
                 case 1:
-                    // manager.Invulnerabilidade();
+                    powerManager.Invulnerabilidade();
                     Destroy(other.gameObject);
                     break;
+
                 case 2:
-                    // manager.Ima();
+                    powerManager.Ima();
                     Destroy(other.gameObject);
                     break;
+
                 case 3:
-                    // manager.BonusSaude();
+                    powerManager.BonusSaude();
                     machucado = 0;
-                    feedback_machucado.SetActive(false);
-                    Debug.Log("PEGOU BONUS SAUDE");
+                    // tela_machucado.SetActive(false);
                     Destroy(other.gameObject);
                     break;
             }
@@ -236,7 +270,7 @@ public class Player : MonoBehaviour
         #endregion
 
         // resetando depois de delay
-        Invoke(nameof(ResetDelayMachucado), 2f);
+        Invoke(nameof(ResetDelayMachucado), 3f);
     }
 
     void ResetDelayMachucado()

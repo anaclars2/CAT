@@ -1,0 +1,521 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8436231285622297796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6528415199533025387}
+  m_Layer: 0
+  m_Name: conjuntoMoedas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6528415199533025387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8436231285622297796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1681679169978535613}
+  - {fileID: 7415108830260614799}
+  - {fileID: 4533079347500114451}
+  - {fileID: 5002683115405767670}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1214915504637208918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6528415199533025387}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_Name
+      value: PeixeMoeda (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_TagString
+      value: PeixeMoeda
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1259151479342875431}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7146989539098534967}
+  m_SourcePrefab: {fileID: 100100000, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+--- !u!4 &1681679169978535613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 1214915504637208918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2025870957692769287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 1214915504637208918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1259151479342875431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025870957692769287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64780b6e416b2e24e80626fa569f78ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameObject: 1
+  isTrigger: 0
+  duracaoMovimento: 10
+  moveSpeed: 4
+  powerup: {fileID: 0}
+  peixeMoeda: {fileID: 0}
+  decoracao: []
+  obstaculos: []
+  posicoes_powerups: []
+  posicoes_obstaculos: []
+  posicoes_peixeMoedas: []
+--- !u!65 &7146989539098534967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025870957692769287}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5600185, y: 1.1640404, z: 0.51720315}
+  m_Center: {x: 0.061773717, y: 0.58407134, z: -0.00027024746}
+--- !u!1001 &4134870548722877944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6528415199533025387}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_Name
+      value: PeixeMoeda (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_TagString
+      value: PeixeMoeda
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5303709861118822341}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1379356691069746389}
+  m_SourcePrefab: {fileID: 100100000, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+--- !u!1 &3865050598807648425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 4134870548722877944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5303709861118822341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865050598807648425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64780b6e416b2e24e80626fa569f78ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameObject: 1
+  isTrigger: 0
+  duracaoMovimento: 10
+  moveSpeed: 4
+  powerup: {fileID: 0}
+  peixeMoeda: {fileID: 0}
+  decoracao: []
+  obstaculos: []
+  posicoes_powerups: []
+  posicoes_obstaculos: []
+  posicoes_peixeMoedas: []
+--- !u!65 &1379356691069746389
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865050598807648425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5600185, y: 1.1640404, z: 0.51720315}
+  m_Center: {x: 0.061773717, y: 0.58407134, z: -0.00027024746}
+--- !u!4 &4533079347500114451 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 4134870548722877944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4820998624285004829
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6528415199533025387}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_Name
+      value: PeixeMoeda (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_TagString
+      value: PeixeMoeda
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 941338309850279073}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4126319718469020323}
+  m_SourcePrefab: {fileID: 100100000, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+--- !u!4 &5002683115405767670 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 4820998624285004829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5631409821231786316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 4820998624285004829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &941338309850279073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631409821231786316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64780b6e416b2e24e80626fa569f78ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameObject: 1
+  isTrigger: 0
+  duracaoMovimento: 10
+  moveSpeed: 4
+  powerup: {fileID: 0}
+  peixeMoeda: {fileID: 0}
+  decoracao: []
+  obstaculos: []
+  posicoes_powerups: []
+  posicoes_obstaculos: []
+  posicoes_peixeMoedas: []
+--- !u!65 &4126319718469020323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631409821231786316}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5600185, y: 1.1640404, z: 0.51720315}
+  m_Center: {x: 0.061773717, y: 0.58407134, z: -0.00027024746}
+--- !u!1001 &7020402963847229796
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6528415199533025387}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_Name
+      value: PeixeMoeda (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      propertyPath: m_TagString
+      value: PeixeMoeda
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8364163180588452977}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4163201371710502502}
+  m_SourcePrefab: {fileID: 100100000, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+--- !u!4 &7415108830260614799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 7020402963847229796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7902711912389643317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d4c47b062b35b94496e803434c3d1d7, type: 3}
+  m_PrefabInstance: {fileID: 7020402963847229796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8364163180588452977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902711912389643317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64780b6e416b2e24e80626fa569f78ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameObject: 1
+  isTrigger: 0
+  duracaoMovimento: 10
+  moveSpeed: 4
+  powerup: {fileID: 0}
+  peixeMoeda: {fileID: 0}
+  decoracao: []
+  obstaculos: []
+  posicoes_powerups: []
+  posicoes_obstaculos: []
+  posicoes_peixeMoedas: []
+--- !u!65 &4163201371710502502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902711912389643317}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5600185, y: 1.1640404, z: 0.51720315}
+  m_Center: {x: 0.061773717, y: 0.58407134, z: -0.00027024746}

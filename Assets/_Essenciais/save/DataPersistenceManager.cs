@@ -26,8 +26,6 @@ public class DataPersistenceManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         this.fileManipulator = new FilePersistenceManipulator(nomeArquivo);
-
-
     }
 
     public void NewGame()

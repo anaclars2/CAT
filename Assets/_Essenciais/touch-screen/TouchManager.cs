@@ -11,11 +11,11 @@ public class TouchManager : MonoBehaviour
 
     Vector2 startTouchPosition;
     Vector2 endTouchPosition;
-    public Vector2 swipeDirection;
+    [HideInInspector] public Vector2 swipeDirection;
     bool isSwiping; // deslizando :D
 
-   // public Player player;
-   // public CheatManager cheat;
+    public Player player;
+    // public CheatManager cheat;
 
     public void Awake()
     {
@@ -82,20 +82,20 @@ public class TouchManager : MonoBehaviour
 
             // ...
 
-            /* if (player != null)
+            if (player != null)
             {
                 player.Movimentacao();
-            }*/
+            }
         }
 
         // se a magnitude, tamanho do vetor, do touch for menor que 50
         // significa que nao houve deslize
         else
         {
-          /*  if (cheat != null)
-            {
-                cheat.ContabilizarTouchs();
-            }*/
+            /*  if (cheat != null)
+              {
+                  cheat.ContabilizarTouchs();
+              }*/
         }
     }
 }
