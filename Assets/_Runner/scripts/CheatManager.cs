@@ -13,7 +13,11 @@ public class CheatManager : MonoBehaviour
     float duracao;
     Scene cena_atual;
     public Player player;
-    public Transform playerPosition;
+
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
 
     private void Start()
     {

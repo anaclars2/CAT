@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
@@ -202,8 +201,8 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
 
     void ConferirCena(int indice)
     {
-        Debug.Log("indiceCena: " + indice);
-        Debug.Log("isGame: " + isGame);
+        // Debug.Log("indiceCena: " + indice);
+        // Debug.Log("isGame: " + isGame);
         if (indice == 0)
         {
             isGame = false;

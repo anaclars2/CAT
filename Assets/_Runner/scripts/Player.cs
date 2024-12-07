@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [Header("Managers")]
-    public SoundManager soundManager;
-    public GameManager manager;
-    public PowerupManager powerManager;
-    public TouchManager touch;
+    [SerializeField] SoundManager soundManager;
+    [SerializeField] GameManager manager;
+    [SerializeField] PowerupManager powerManager;
+    [SerializeField] TouchManager touch;
 
     [Header("Animacao")]
-    // public Animator animator;
+    [SerializeField] Animator[] animator;
     // public AnimationClip[] animationClip;
 
     [Header("Movimentacao")]
@@ -42,22 +43,31 @@ public class Player : MonoBehaviour
     [Header("Mesh")]
     // public GameObject lunaMesh;
 
-    [HideInInspector] public int powerupsPartida = 0;
     [HideInInspector] public int danoFrutas = 0;
+
     int peixeMoedasPartida = 0;
     void Awake()
     {
         danoFrutas = 0;
-        powerupsPartida = 0;
         machucado = 0;
 
         // para ele comecar com a posicao definida na cena
         posicao_alvo = transform.position;
         posicao_base = transform.position;
+
+        if (manager == null)
+        {
+            manager = GameObject.Find("GeneralManager").GetComponent<GameManager>();
+        }
     }
 
     void Update()
     {
+        if (manager == null)
+        {
+            manager = GameObject.Find("GeneralManager").GetComponent<GameManager>();
+        }
+
         texto_peixeMoeda.text = peixeMoedasPartida.ToString();
 
         /* if (montariaLuna == true)
@@ -180,23 +190,29 @@ public class Player : MonoBehaviour
                     soundManager.SomPular();
                     posicao_alvo = new Vector3(transform.position.x, altura_pulo, posicao_base.z);
                     escorregou_pulou = true;
+                    foreach (Animator a in animator)
+                    {
+                        a.SetTrigger("pulou");
+
+                    }
                 }
             }
         }
     }
 
     // coroutina com atraso de 2 segundos
-    /*   private IEnumerator AcoesAposMorte()
-       {
-           yield return new WaitForSeconds(2f);
+    private IEnumerator AcoesAposMorte()
+    {
+        yield return new WaitForSeconds(2f);
 
-           // executa as acoes apos o atraso
-           soundManager.MusicaSegundaChance();
-          // tela_machucado.SetActive(false);
-           tela_game.SetActive(false);
-           tela_segunda_chance.SetActive(true);
-           Time.timeScale = 0f;
-       }*/
+        // executa as acoes apos o atraso
+        // soundManager.MusicaSegundaChance();
+        // tela_machucado.SetActive(false);
+        // tela_game.SetActive(false);
+        // tela_segunda_chance.SetActive(true);
+        Time.timeScale = 0f;
+        SceneManager.LoadSceneAsync(0);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -205,7 +221,13 @@ public class Player : MonoBehaviour
             recentemente_machucado = true;
             if (power_invulnerabilidade == false && cheat_vida_infinita == false)
             {
+                foreach (Animator a in animator)
+                {
+                    a.SetTrigger("dano");
+
+                }
                 machucado++;
+                soundManager.SomDano();
                 // tela_machucado.SetActive(true);
             }
 
@@ -213,7 +235,11 @@ public class Player : MonoBehaviour
             {
                 if (montariaLuna != true)
                 {
-                    //animator.SetTrigger("morreu");
+                    foreach (Animator a in animator)
+                    {
+                        a.SetTrigger("morreu");
+
+                    }
                 }
                 else
                 {
@@ -222,7 +248,7 @@ public class Player : MonoBehaviour
                 soundManager.SomMorrer();
                 parar_input_player = true;
 
-                //StartCoroutine(AcoesAposMorte());
+                StartCoroutine(AcoesAposMorte());
             }
 
             if (other.gameObject.CompareTag("Fruta"))
@@ -236,6 +262,7 @@ public class Player : MonoBehaviour
         {
             manager.peixe_moeda++;
             peixeMoedasPartida++;
+            soundManager.SomPeixeMoeda();
             Destroy(other.gameObject);
         }
         #endregion
@@ -244,8 +271,8 @@ public class Player : MonoBehaviour
         else if (other.gameObject.CompareTag("PowerUp"))
         {
             int powerup = (int)UnityEngine.Random.Range(1, 4);
-            Debug.Log("powerup random " + powerup);
-            powerupsPartida++;
+            manager.powerupsPartida++;
+            manager.powerups++;
 
             switch (powerup)
             {

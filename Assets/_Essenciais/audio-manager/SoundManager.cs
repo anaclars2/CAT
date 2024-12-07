@@ -46,6 +46,7 @@ public class SoundManager : MonoBehaviour
     // 6 - selecionar 
     // 7 - comprar 
     // 8 - erro
+    // 9 - dano
 
     public void SomClicar()
     {
@@ -82,5 +83,9 @@ public class SoundManager : MonoBehaviour
     public void SomErro()
     {
         audioController.TocarSFX(8);
+    }
+    public void SomDano()
+    {
+        audioController.TocarSFX(9);
     }
 }

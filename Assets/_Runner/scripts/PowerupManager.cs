@@ -102,6 +102,11 @@ public class PowerupManager : MonoBehaviour
         fill_powerup.fillAmount = 1;
     }
 
+    private void Update()
+    {
+        Timers();
+    }
+
     void Timers()
     {
         if (fill_powerup.fillAmount != 0 && fill_powerup.IsActive() == true)
@@ -162,19 +167,32 @@ public class PowerupManager : MonoBehaviour
         }
     }
 
-    void AtivarPowerUp() // efeito visual
+    void AtivarPowerUp()
     {
-        while (timer_powerup.transform.localPosition.x < -438)
-        {
-            timer_powerup.transform.localPosition = new UnityEngine.Vector2(transform.localPosition.x + 20, transform.localPosition.y);
-        }
+        StartCoroutine(MoverTimerPowerUp(-438)); // destino: -438
     }
 
-    void DesativarPowerUp() // efeito visual
+    void DesativarPowerUp()
     {
-        while (timer_powerup.transform.localPosition.x > -849)
+        StartCoroutine(MoverTimerPowerUp(-849)); // destino: -849
+    }
+
+    IEnumerator MoverTimerPowerUp(float destinoX)
+    {
+        UnityEngine.Vector2 posInicial = timer_powerup.transform.localPosition;
+        UnityEngine.Vector2 posFinal = new UnityEngine.Vector2(destinoX, posInicial.y);
+
+        float duracao = 0.5f; // duracao da animacao em segundos
+        float tempo = 0;
+
+        while (tempo < duracao)
         {
-            timer_powerup.transform.localPosition = new UnityEngine.Vector2(transform.localPosition.x - 20, transform.localPosition.y);
+            tempo += Time.deltaTime;
+            timer_powerup.transform.localPosition = UnityEngine.Vector2.Lerp(posInicial, posFinal, tempo / duracao);
+            yield return null; // esoerando o proximo frame
         }
+
+        // garatindo a posicao final exata
+        timer_powerup.transform.localPosition = posFinal;
     }
 }
