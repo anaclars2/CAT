@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int missao_ativa;
     public bool[] missoes_concluidas;
     public bool[] skins_desbloqueadas;
 
@@ -14,10 +13,6 @@ public class GameData
     public int total_moedas;
     public bool desviou_frutas;
     public int skinEscolhida_indice;
-
-    public float volumeMaster;
-    public float volumeMusics;
-    public float volumeSfx;
 
     public string progresso_historia; // public int fala_atual
 
@@ -28,7 +23,6 @@ public class GameData
         this.missoes_concluidas = new bool[8];
         this.skins_desbloqueadas = new bool[3];
 
-        this.missao_ativa = 100;
         for (int i = 0; i < 8; i++)
         {
             this.missoes_concluidas[i] = false;
@@ -46,9 +40,5 @@ public class GameData
         this.total_powerups = 0;
 
         this.progresso_historia = "";
-
-        volumeMaster = 0;
-        volumeMusics = 0;
-        volumeSfx = 0;
     }
 }

@@ -194,7 +194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 8356635066448279340}
   sfxSource: {fileID: 187457039076048387}
-  music: []
+  music:
+  - {fileID: 8300000, guid: c65b684674a89f64bb62f030e07c3c76, type: 3}
+  - {fileID: 0}
   sfx:
   - {fileID: 8300000, guid: 1452a3a4ffcbfb941972d1ec28bbcf3d, type: 3}
   - {fileID: 8300000, guid: c91d990be3c66eb4d9bbb63b1c803b29, type: 3}
@@ -205,6 +207,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 88b924b41b39bbd41a2b719588b867d3, type: 3}
   - {fileID: 8300000, guid: aba777be9d8be384990c351c974aacba, type: 3}
   - {fileID: 8300000, guid: fe325427bb5cd2145a9f36de1040d06f, type: 3}
+  - {fileID: 8300000, guid: 2117c59496398cc438c3b5ad7cbc1911, type: 3}
 --- !u!114 &5490844571800930391
 MonoBehaviour:
   m_ObjectHideFlags: 0

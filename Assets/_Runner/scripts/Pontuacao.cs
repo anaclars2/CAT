@@ -16,6 +16,7 @@ public class Pontuacao : MonoBehaviour, IDataPersistence
 
     [Header("Canvas")]
     public TMP_Text t_pontuacao;
+    public TMP_Text t_pontuacaoInfo;
 
     void Update()
     {
@@ -28,6 +29,12 @@ public class Pontuacao : MonoBehaviour, IDataPersistence
 
         // Atualizar pontosTotais com o valor exibido
         pontosTotais = int.Parse(pontosTexto);
+
+        if (t_pontuacaoInfo.gameObject.activeInHierarchy == true)
+        {
+            t_pontuacaoInfo.text = pontosTexto;
+        }
+
     }
 
     public void SaveData(GameData data)

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CheatManager : MonoBehaviour
 {
     public SceneController scene_controller;
+    [SerializeField] Quests quests;
     int toques_sequenciais;
     public int index_cena_atual;
     bool iniciar_temp = false;
@@ -44,22 +45,14 @@ public class CheatManager : MonoBehaviour
         // verificando qual cheat o player quer utilizar
         if (iniciar_temp == false)
         {
-            if (toques_sequenciais == 4) // proxima fase
-            {
-                int cena_carregar = 0;
-                if (index_cena_atual == 1) // se for a primeira fase
-                {
-                    // cena_carregar = 2;
-                    // Debug.Log("FUNCIONOU CARALHO");
-                }
-
-                //...
-
-                // scene_controller.CarregarCena(cena_carregar);
-            }
-            else if (toques_sequenciais == 5) // vidas infinitas
+            if (toques_sequenciais == 4) // vidas infinitas
             {
                 player.cheat_vida_infinita = true;
+            }
+            else if (toques_sequenciais >= 5)
+            {
+                quests.cheatAtivo = true;
+                Debug.Log("cheatAtivo" + quests.cheatAtivo);
             }
 
             if (toques_sequenciais != 0)
@@ -84,5 +77,7 @@ public class CheatManager : MonoBehaviour
             toques_sequenciais++;
             duracao = 0;
         }
+
+        Debug.Log("touchs" + toques_sequenciais);
     }
 }

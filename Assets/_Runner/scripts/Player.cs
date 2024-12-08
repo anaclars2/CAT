@@ -36,18 +36,32 @@ public class Player : MonoBehaviour
     public bool parar_input_player = false; // quando o player morrer
 
     [Header("Elementos UI")]
-    // [SerializeField] GameObject tela_segunda_chance;
-    // [SerializeField] GameObject tela_game;
+    [SerializeField] GameObject tela_info;
+    [SerializeField] GameObject tela_game;
     [SerializeField] TMP_Text texto_peixeMoeda;
+    [SerializeField] TMP_Text texto_peixeMoedaInfo;
+    [SerializeField] TMP_Text texto_powerupInfo;
 
     [Header("Mesh")]
     // public GameObject lunaMesh;
 
+    [Header("Player morreu")]
+    [SerializeField] BackgroundScroller[] backScroller = new BackgroundScroller[2];
+
     [HideInInspector] public int danoFrutas = 0;
+    [HideInInspector] public bool modoFrutas = false;
 
     int peixeMoedasPartida = 0;
     void Awake()
     {
+        // retornando tudo p valor original
+        parar_input_player = false;
+        ObjectManager.moveSpeed = 20f;
+        backScroller[0].scrollSpeed = 0.5f;
+        backScroller[1].scrollSpeed = 0.5f;
+
+        tela_game.SetActive(true);
+        tela_info.SetActive(false);
         danoFrutas = 0;
         machucado = 0;
 
@@ -69,6 +83,14 @@ public class Player : MonoBehaviour
         }
 
         texto_peixeMoeda.text = peixeMoedasPartida.ToString();
+        if (texto_peixeMoedaInfo.gameObject.activeInHierarchy == true)
+        {
+            texto_peixeMoedaInfo.text = peixeMoedasPartida.ToString();
+        }
+        if (texto_powerupInfo.gameObject.activeInHierarchy == true)
+        {
+            texto_powerupInfo.text = manager.powerupsPartida.ToString();
+        }
 
         /* if (montariaLuna == true)
          {
@@ -192,8 +214,8 @@ public class Player : MonoBehaviour
                     escorregou_pulou = true;
                     foreach (Animator a in animator)
                     {
-                        a.SetTrigger("pulou");
-
+                        if (a.gameObject.activeInHierarchy == true)
+                            a.SetTrigger("pulou");
                     }
                 }
             }
@@ -203,15 +225,13 @@ public class Player : MonoBehaviour
     // coroutina com atraso de 2 segundos
     private IEnumerator AcoesAposMorte()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         // executa as acoes apos o atraso
-        // soundManager.MusicaSegundaChance();
-        // tela_machucado.SetActive(false);
-        // tela_game.SetActive(false);
-        // tela_segunda_chance.SetActive(true);
+        soundManager.MusicaSegundaChance();
+        tela_game.SetActive(false);
+        tela_info.SetActive(true);
         Time.timeScale = 0f;
-        SceneManager.LoadSceneAsync(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -228,7 +248,6 @@ public class Player : MonoBehaviour
                 }
                 machucado++;
                 soundManager.SomDano();
-                // tela_machucado.SetActive(true);
             }
 
             if (machucado >= 2)
@@ -238,15 +257,18 @@ public class Player : MonoBehaviour
                     foreach (Animator a in animator)
                     {
                         a.SetTrigger("morreu");
-
                     }
                 }
                 else
                 {
 
                 }
+                // se ele morrer 
                 soundManager.SomMorrer();
                 parar_input_player = true;
+                ObjectManager.moveSpeed = 0f;
+                backScroller[0].scrollSpeed = 0f;
+                backScroller[1].scrollSpeed = 0f;
 
                 StartCoroutine(AcoesAposMorte());
             }

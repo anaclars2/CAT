@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void SaveData(GameData data)
     {
         // implementando a logica de salvar os valores
+        Debug.LogError("chamou o save de gameManager vei p salvar");
+
         data.total_moedas = this.peixe_moeda;
         data.total_powerups = this.powerups;
     }

@@ -15,7 +15,7 @@ public class TouchManager : MonoBehaviour
     bool isSwiping; // deslizando :D
 
     public Player player;
-    // public CheatManager cheat;
+    public CheatManager cheat;
 
     public void Awake()
     {
@@ -72,10 +72,10 @@ public class TouchManager : MonoBehaviour
     private void DetectSwipe()
     {
         swipeDirection = endTouchPosition - startTouchPosition;
-        if (swipeDirection.magnitude > 50)
+        if (swipeDirection.magnitude > 20)
         {
             // normalizado é de 0 a 1
-            Debug.Log("Swipe detected: " + swipeDirection.normalized);
+            // Debug.Log("Swipe detected: " + swipeDirection.normalized);
             Vector3 startWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(startTouchPosition.x, startTouchPosition.y, 10));
             Vector3 endWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(endTouchPosition.x, endTouchPosition.y, 10));
             Debug.DrawLine(startWorldPosition, endWorldPosition, Color.red, 2.0f);
@@ -92,10 +92,10 @@ public class TouchManager : MonoBehaviour
         // significa que nao houve deslize
         else
         {
-            /*  if (cheat != null)
-              {
-                  cheat.ContabilizarTouchs();
-              }*/
+            if (cheat != null)
+            {
+                cheat.ContabilizarTouchs();
+            }
         }
     }
 }

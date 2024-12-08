@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    [SerializeField] bool isGameObject = false;
+    [SerializeField] public bool isGameObject = false;
     [SerializeField] bool isTrigger = false;
     [SerializeField] bool rotacionar180 = true;
 
     [Header("isGameObject")]
     [SerializeField] static float duracaoMovimento = 15f; // duracao do movimento em segundos
-    [SerializeField] static float moveSpeed = 20f;
+    public static float moveSpeed = 20f;
     float timer = 0f;
 
     [Header("Blocos")]

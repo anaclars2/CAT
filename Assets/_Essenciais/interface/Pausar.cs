@@ -24,24 +24,18 @@ public class Pausar : MonoBehaviour
         Time.timeScale = 0f;
         if (runner == true)
         {
-            if (player != null)
-            {
-                player.parar_input_player = true;
-            }
+            player.parar_input_player = true;
         }
         // painel_pause.SetActive(true);
     }
 
     public void Continue()
     {
-        Time.timeScale = 1f;
         if (runner == true)
         {
-            if (player != null)
-            {
-                player.parar_input_player = false;
-            }
+            player.parar_input_player = false;
         }
+        Time.timeScale = 1f;
         // painel_pause.SetActive(false);
     }
     private void OnApplicationPause(bool pause)

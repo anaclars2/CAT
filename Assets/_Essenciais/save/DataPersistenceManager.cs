@@ -35,6 +35,8 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void LoadGame()
     {
+        this.obj_dataPersistences = FindAllPersistencesObjects();
+
         // carrega qualquer arquivo de DataGame usando manipulador de data
         this.gameData = fileManipulator.Load();
 
@@ -59,6 +61,8 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
+        this.obj_dataPersistences = FindAllPersistencesObjects();
+
         if (this.gameData == null)
         {
             Debug.LogError("gameData é null ao tentar salvar");

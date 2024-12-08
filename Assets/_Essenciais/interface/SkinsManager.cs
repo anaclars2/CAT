@@ -38,6 +38,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
 
     int objetoAtual_indice = 0;
     int textos_indice = 0;
+    [HideInInspector] public int skinsDesbloqueadas_numero = 0;
 
     private void Awake()
     {
@@ -119,6 +120,8 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
             {
                 SoundManager.Instance.SomErro();
             }
+
+            skinsDesbloqueadas_numero++;
         }
     }
 
@@ -179,7 +182,10 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
     void AtualizarIndices(int novoIndice)
     {
         objetoAtual_indice = novoIndice;
-        skinEscolhida_indice = objetoAtual_indice;
+        if (skins_desbloqueadas[objetoAtual_indice] == true)
+        {
+            skinEscolhida_indice = objetoAtual_indice;
+        }
         textos_indice = objetoAtual_indice % nomes.Length;
 
         Atualizar();

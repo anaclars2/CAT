@@ -12,6 +12,7 @@ public class SceneController : MonoBehaviour
 
     public void CarregarCenaData(int i)
     {
+        DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync(i);
     }
 
