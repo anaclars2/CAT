@@ -6,8 +6,11 @@ VAR lunaCorrer = false
 #place:milharal
 
 Ah, a vida no campo! Milho balançando, brisa suave... e um astronauta aposentado com cara de quem quer fugir daqui. Esse é Joe McIntyre. Já foi uma lenda no espaço, mas agora? Fazendeiro. Do pó ao pó, não é o que dizem? #speaker:Narrador
+
 Bem... Essa é uma história sobre mudanças. E gatos, gatos espaciais para ser mais exato. Esta fazendinha pode não parecer grande coisa, mas é aqui que nossa história começa, em meio às douradas espigas de milho. #speaker:Narrador
+
 Conheçam Joe, um ex-astronauta renomado e engenheiro aeroespacial na Estação Espacial Internacional. #speaker:Narrador
+
 Primeiramente as primeiras coisas, após sofrer um acidente em uma missão secreta espacial Joe foi forçadamente aposentado, e agora passa seus dias como um fazendeiro na propriedade que herdou de seu pai. #speaker:Narrador
 
 Uma coisa despenca em direção à Terra, rasgando o céu com um estrondo ensurdecedor, como um trovão metálico misturado ao lamento de ventos distorcidos. #speaker:Narrador
@@ -16,11 +19,15 @@ Você ouviu isso? Finalmente algo interessante! E não, Joe, isso não é uma es
 
 Lá vai o seu milharal, Joe. Espero que tenha seguro. #speaker:Narrador
 
-Sem perder tempo, Joe levanta-se e vai correndo até o local do impacto. Ao chegar, Joe depara-se com algum tipo de veículo voador, fortemente danificado e soltando fumaça. Partes de sua estrutura ardiam um forte tom de amarelo, e alguns pingos de material derretido beijavam o chão. Foi então que, subitamente, o vidro que protegia o que Joe imaginou ser a cabine saiu voando para longe, e ele cai no chão, assustado. #speaker:Narrador
+Sem perder tempo, Joe levanta-se e vai correndo até o local do impacto. Ao chegar, Joe depara-se com algum tipo de veículo voador, fortemente danificado e soltando fumaça. #speaker:Narrador
+
+Partes de sua estrutura ardiam um forte tom de amarelo, e alguns pingos de material derretido beijavam o chão. #speaker:Narrador
+
+Foi então que, subitamente, o vidro que protegia o que Joe imaginou ser a cabine saiu voando para longe, e ele cai no chão, assustado. #speaker:Narrador
 
 Joe, o que você está fazendo? Ah, sim, se aproximar de um objeto não identificado voador é sempre uma boa ideia. #speaker:Narrador
 
-C-caramba!! #speaker:Joe
+C-caramba!! #speaker:Joe #portraitJoe:normal
 
 Dramaticamente, surge de entre os braços pálidos da fumaça uma pequena e quadrúpede figura, porém com uma aura ameaçadora. #speaker:Narrador
 
@@ -30,148 +37,148 @@ Então, ela dá um passo à frente e revela ser um gato bípede. #speaker:Narrad
 
 Um gato? #speaker:Narrador
 
-Um gato? #speaker:Joe
+Um gato? #speaker:Joe #portraitJoe:normal
 
-É, é um gato. Algum problema? #speaker:???
+É, é um gato. Algum problema? #speaker:??? #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
 Joe pisca confuso, e a gatinha franze o cenho enquanto se aproxima com um andar elegante e cauteloso. #speaker:Narrador
 
-O que é você? Algum tipo de experimento secreto? #speaker:Joe
+O que é você? Algum tipo de experimento secreto? #speaker:Joe #portraitJoe:normal
 
-Por favor, nada que sua raça possa fazer chegaria aos pés do que gatos são capazes. #speaker:???
+Por favor, nada que sua raça possa fazer chegaria aos pés do que gatos são capazes. #speaker:??? #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Mesmo você sendo de uma raça tão esquisita, a etiqueta amurita requer que eu me apresente direito. Eu sou Iaha-Mai, mas na sua língua meu nome é Luna Leona, e eu venho do planeta Amura. #speaker:Luna
+Mesmo você sendo de uma raça tão esquisita, a etiqueta amurita requer que eu me apresente direito. Eu sou Iaha-Mai, mas na sua língua meu nome é Luna Leona, e eu venho do planeta Amura. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Eu diria que é um prazer te conhecer, mas na verdade está mais para um contratempo indesejado. #speaker:Luna
+Eu diria que é um prazer te conhecer, mas na verdade está mais para um contratempo indesejado. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Ei! E você é um E.T? Mas você é um gato! #speaker:Joe
+Ei! E você é um E.T? Mas você é um gato! #speaker:Joe #portraitJoe:normal
 
-De onde você acha que gatos são? #speaker:Luna
+De onde você acha que gatos são? #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-... #speaker:Joe
+... #speaker:Joe #portraitJoe:normal
 
-Eu estava à caminho de uma importante reunião secreta de gatos amuritas, mas como você pode ver, minha espaçonave caiu neste seu planetinha pitoresco. Então... #speaker:Luna
+Eu estava à caminho de uma importante reunião secreta de gatos amuritas, mas como você pode ver, minha espaçonave caiu neste seu planetinha pitoresco. Então... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-...você precisa de ajuda pra consertar ele? #speaker:Joe
+...você precisa de ajuda pra consertar ele? #speaker:Joe #portraitJoe:sorrindo
 
-É o que parece. Você ao menos sabe me direcionar até a sede mais próxima da sua organização espacial?  #speaker:Luna
+É o que parece. Você ao menos sabe me direcionar até a sede mais próxima da sua organização espacial?  #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-... #speaker:Joe
+... #speaker:Joe #portraitJoe:normal
 
-Eu não posso levar você pras autoridades, quem sabe o que vão fazer com você! No mínimo te dissecar, ou sei lá! #speaker:Joe
+Eu não posso levar você pras autoridades, quem sabe o que vão fazer com você! No mínimo te dissecar, ou sei lá! #speaker:Joe #portraitJoe:normal
 
-E o que te faz pensar que eu não poderia escapar e derrotar todos eles? #speaker:Luna
+E o que te faz pensar que eu não poderia escapar e derrotar todos eles? #speaker:Luna #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Eu não penso isso! Com toda a certeza, eu não duvidaria de uma gata que veio do espaço, mas a pergunta é… por quanto tempo você conseguiria resistir? Tenho certeza que por muitos dias, talvez meses, mas e depois? #speaker:Joe
+Eu não penso isso! Com toda a certeza, eu não duvidaria de uma gata que veio do espaço, mas a pergunta é... por quanto tempo você conseguiria resistir? Tenho certeza que por muitos dias, talvez meses, mas e depois? #speaker:Joe #portraitJoe:normal
 
 As sobrancelhas de Luna Leona descem ainda mais, grunhindo irritada. #speaker:Narrador
 
-Você está subestimando guerreiros amuritas… #speaker:Luna
+Você está subestimando guerreiros amuritas... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Muito pelo contrário, estou querendo que você não se atrase para sua reunião! Se você me ensinar o básico da engenharia da sua nave e me der uns dias, eu tenho certeza que eu poderia consertar ela! #speaker: Joe
+Muito pelo contrário, estou querendo que você não se atrase para sua reunião! Se você me ensinar o básico da engenharia da sua nave e me der uns dias, eu tenho certeza que eu poderia consertar ela! #speaker:Joe #portraitJoe:normal
 
-Heh? É mesmo? Você não é tão inútil quanto eu imaginei…  #speaker:Luna
+Heh? É mesmo? Você não é tão inútil quanto eu imaginei...  #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando
 
-Mas um grande gato amurita nunca confiaria em um... #speaker:Luna
+Mas um grande gato amurita nunca confiaria em um... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-... um humano? #speaker:Joe
+... um humano? #speaker:Joe #portraitJoe:sorrindo
 
-Isso. Racinha desprezível... #speaker:Luna
+Isso. Racinha desprezível... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Bem, se você for mesmo tão poderosa quanto você diz, eu não acho que tem nada que eu possa fazer contra você. #speaker:Joe
+Bem, se você for mesmo tão poderosa quanto você diz, eu não acho que tem nada que eu possa fazer contra você. #speaker:Joe #portraitJoe:normal
 
-É melhor do que confiar num monte de gente que tem histórico de dissecar alienígenas. Meu nome é Joe McIntyre. #speaker:Joe
+É melhor do que confiar num monte de gente que tem histórico de dissecar alienígenas. Meu nome é Joe McIntyre. #speaker:Joe #portraitJoe:sorrindo
 
-Eu sou uma amurita. Me trate como tal! Alienígena é como vocês nos chamam, mas não o que eu sou. #speaker:Luna
+Eu sou uma amurita. Me trate como tal! Alienígena é como vocês nos chamam, mas não o que eu sou. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-...  #speaker:Joe
+...  #speaker:Joe #portraitJoe:normal
 
-Vejo que não tenho outra escolha.#speaker:Luna
+Vejo que não tenho outra escolha.#speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-... #speaker:Luna
+... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Bom, eu lhe concedo a inimaginável honra de servir ao grande Império Amurita! Sinta-se grato, pois você acaba de iniciar o dia mais importante dessa sua vida! #speaker:Luna
+Bom, eu lhe concedo a inimaginável honra de servir ao grande Império Amurita! Sinta-se grato, pois você acaba de iniciar o dia mais importante dessa sua vida! #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando
 
-Se você não tivesse me avisado, eu ia jurar que era só mais uma terça feira normal. #speaker:Joe
+Se você não tivesse me avisado, eu ia jurar que era só mais uma terça feira normal. #speaker:Joe #portraitJoe:normal
 
-Então... Você disse que veio do “grande” Império Amurita? #speaker:Joe
+Então... Você disse que veio do “grande” Império Amurita? #speaker:Joe #portraitJoe:normal
 
-... #speaker:Luna
+... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Onde fica seu planeta? Eu sou um astronauta, eu trabalho com o espaço! #speaker:Joe
+Onde fica seu planeta? Eu sou um astronauta, eu trabalho com o espaço! #speaker:Joe #portraitJoe:normal
 
 Joe, ela é um gato do espaço, não sua nova melhor amiga. Não force. #speaker:Narrador
 
-Aliás, como você consegue entender minha língua? #speaker:Joe
+Aliás, como você consegue entender minha língua? #speaker:Joe #portraitJoe:normal
 
-Não entender seria um favor. #speaker:Luna
+Não entender seria um favor. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
 
 #place:casaJoe
 
 
-Bem vinda! Quer alguma coisa pra comer? #speaker:Joe
+Bem vinda! Quer alguma coisa pra comer? #speaker:Joe #portraitJoe:sorrindo
 
-Você disse que é um astronauta? Aqueles que estudam estrelas? #speaker:Luna
+Você disse que é um astronauta? Aqueles que estudam estrelas? #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Não. Quer dizer, está incluído, mas não. Astronautas são pessoas que vão pro espaço sideral #speaker:Joe
+Não. Quer dizer, está incluído, mas não. Astronautas são pessoas que vão pro espaço sideral #speaker:Joe #portraitJoe:sorrindo
 
-Há! Já tava na hora! Eu achei que vocês nunca iam conseguir! #speaker:Luna
+Há! Já tava na hora! Eu achei que vocês nunca iam conseguir! #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando
 
-Então você veio pra cá antes? Há quanto tempo? #speaker:Joe
+Então você veio pra cá antes? Há quanto tempo? #speaker:Joe #portraitJoe:sorrindo
 
-Eu sei lá. Você tem ideia de quantos planetas eu já visitei? Nem que eu soubesse, nossos calendários devem ser completamente diferentes! #speaker:Luna
+Eu sei lá. Você tem ideia de quantos planetas eu já visitei? Nem que eu soubesse, nossos calendários devem ser completamente diferentes! #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando
 
-É verdade! Então, como que estava a Terra da última vez que você veio? #speaker:Joe
+É verdade! Então, como que estava a Terra da última vez que você veio? #speaker:Joe #portraitJoe:normal
 
-Bem... Nós estávamos fazendo aquelas pirâmides no deserto pra vocês. Eu mesma fiz três. #speaker:Luna
+Bem... Nós estávamos fazendo aquelas pirâmides no deserto pra vocês. Eu mesma fiz três. #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando
 
-É mesmo? Que incrível, isso faz mais de dois mil anos! Eu sempre achei que fomos nós que fizemos. #speaker:Joe
+É mesmo? Que incrível, isso faz mais de dois mil anos! Eu sempre achei que fomos nós que fizemos. #speaker:Joe #portraitJoe:sorrindo
 
-A imaginação da sua raça é incrível.#speaker:Luna
+A imaginação da sua raça é incrível.#speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Então você é algum tipo de... arquiteta espacial?#speaker:Joe
+Então você é algum tipo de... arquiteta espacial?#speaker:Joe #portraitJoe:normal
 
-Não. Aquilo foi só uma vez. #speaker:Luna
+Não. Aquilo foi só uma vez. #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando
 
-Entendi... Então, Se você não é uma arquiteta ou o que o valha, o que você faz no “grande Império Amurita”? #speaker:Joe
+Entendi... Então, Se você não é uma arquiteta ou o que o valha, o que você faz no “grande Império Amurita”? #speaker:Joe #portraitJoe:sorrindo
 
-Isso não importa. De qualquer forma, pedaços da minha espaçonave caíram pela sua fazenda... #speaker:Luna
+Isso não importa. De qualquer forma, pedaços da minha espaço nave caíram pela sua fazenda... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Na verdade... deve ter pedaços da minha nave por vários lugares... #speaker:Luna
+Na verdade... deve ter pedaços da minha nave por vários lugares... #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Essa é sua primeira missão! Vai pegar os pedaços da minha nave pela sua fazenda! #speaker:Luna #quest:600m
+Essa é sua primeira missão! Vai pegar os pedaços da minha nave pela sua fazenda! #speaker:Luna #portraitLunaA:luna-normal #portraitLunaB:luna-falando 
 
-Por que você não faz isso você mesma? #speaker:Joe
+Por que você não faz isso você mesma? #speaker:Joe #portraitJoe:normal
 
-Ora mais, não foi você que disse que ia ajudar? Eu vou ficar aqui e procurar o que fazer. #speaker:Luna
+Ora mais, não foi você que disse que ia ajudar? Eu vou ficar aqui e procurar o que fazer. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
 
-Eai Joe,  o que vai ser? #speaker:Narrador
+Eai Joe, o que vai ser? #speaker:Narrador
     * [Render-se à ela]
-        Eu devia deixar te dissecarem... #speaker:Joe #correrL:false
+        Eu devia deixar te dissecarem... #speaker:Joe #portraitJoe:normal #correrL:false
             ~ lunaCorrer = false
-                -> DONE
+                -> SegundaMissao
                 
     * [Convencer ela à ir]
-        Acho que alguém tão capaz quanto você poderia resolver isso rapidinho... #speaker:Joe
+        Acho que alguém tão capaz quanto você poderia resolver isso rapidinho... #speaker:Joe #portraitJoe:normal
         
-        Hm... Claro que eu poderia. Mas por que eu faria isso, humano? #speaker:Luna
+        Hm... Claro que eu poderia. Mas por que eu faria isso, humano? #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
         
-        Bom, é simples. Você é claramente muito mais rápida do que eu. E, convenhamos, se tem alguém aqui que sabe o que está procurando, é você. #speaker:Joe
+        Bom, é simples. Você é claramente muito mais rápida do que eu. E, convenhamos, se tem alguém aqui que sabe o que está procurando, é você. #speaker:Joe #portraitJoe:sorrindo
         
-        ... #speaker: Luna 
+        ... #speaker: Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
         
-        ...Você tem razão. Um humano como você jamais distinguiria uma peça de tecnologia amurita de... um pedaço de sucata velho. #speaker:Luna 
+        ...Você tem razão. Um humano como você jamais distinguiria uma peça de tecnologia amurita de... um pedaço de sucata velho. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva
         
-        Muito bem, eu mesma irei buscar as peças. Mas só porque você claramente não tem condições de realizar uma tarefa tão importante. #speaker:Luna #correrL:true #conquista:MEOWnipulador
+        Muito bem, eu mesma irei buscar as peças. Mas só porque você claramente não tem condições de realizar uma tarefa tão importante. #speaker:Luna #portraitLunaA:luna-convencida #portraitLunaB:luna-raiva #correrL:true #conquista:MEOWnipulador
                     ~ lunaCorrer = true 
-            -> DONE
+            -> SegundaMissao
     
-    -> SegundaMissao
+=== SegundaMissao ===
     
-    === SegundaMissao ===
+    #quest:600m
     
-   {lunaCorrer == true:
+    {lunaCorrer == true:
     Agora você não tem desculpa! Isso são peças amuritas. #speaker:Luna
     
     Aham... #speaker: Joe

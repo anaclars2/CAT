@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
     public int peixe_moeda;
     public int powerups;
     public int powerupsPartida;
+    [HideInInspector] public int partidasQuest = 0;
     public static GameManager Instance;
+    [SerializeField] GameObject menu;
+    [SerializeField] GameObject skins;
+    [HideInInspector] public bool skinsAtiva = false;
+    public bool lunaCorrendo;
 
     private void Awake()
     {
@@ -38,4 +44,37 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.powerups = data.total_powerups;
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0)
+        {
+            AtivarSkins();
+        }
+    }
+
+    public void AtivarSkins(bool b)
+    {
+        skinsAtiva = b;
+    }
+    void AtivarSkins()
+    {
+        if (skinsAtiva == true)
+        {
+            menu = GameObject.Find("Canvas").transform.Find("menu").gameObject;
+            skins = GameObject.Find("Canvas").transform.Find("skins").gameObject;
+            menu.SetActive(false);
+            skins.SetActive(true);
+            skinsAtiva = false;
+        }
+    }
 }

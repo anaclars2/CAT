@@ -20,14 +20,17 @@ public class Pontuacao : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        // Atualizar os pontos
-        pontos += Time.deltaTime * 5; // Incrementa os pontos
+        if (player.machucado < 2)
+        {  
+            // atualizando os pontos
+            pontos += Time.deltaTime * 5;
+        }
 
-        // Exibir a pontuação formatada no texto
+        // exibindo a pontuacao formatada no texto
         string pontosTexto = pontos.ToString("F0");
         t_pontuacao.text = pontosTexto;
 
-        // Atualizar pontosTotais com o valor exibido
+        // atualizando pontosTotais com o valor exibido
         pontosTotais = int.Parse(pontosTexto);
 
         if (t_pontuacaoInfo.gameObject.activeInHierarchy == true)

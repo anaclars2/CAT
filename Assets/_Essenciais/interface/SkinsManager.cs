@@ -12,11 +12,14 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
 {
     [Header("Tipo Cena")]
     [SerializeField] bool isGame = false;
+    [SerializeField] bool isNovel = false;
 
     [Header("Skins e Gerenciamento")]
     public bool[] skins_desbloqueadas = new bool[3];
     [SerializeField] GameManager gameManager;
     [SerializeField] GameObject censura;
+    [SerializeField] GameObject skinLeona;
+    [SerializeField] GameObject skinCabecaJoe;
     [SerializeField] GameObject[] skinsGame = new GameObject[3];
     PostProcessVolume volume;
     ColorGrading colorGrading;
@@ -51,7 +54,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        if (isGame == false)
+        if (isGame == false && isNovel == false)
         {
             volume = objectCamera.gameObject.GetComponent<PostProcessVolume>();
             if (volume == null) { Debug.LogError("Post processing volume nulo >:C"); }
@@ -67,18 +70,35 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
             Atualizar();
             VerificarCensura();
         }
-        else
+        else if (isGame == true)
         {
-            for (int i = 0; i < 3; i++)
+            if (gameManager.lunaCorrendo != true)
             {
-                if (i != skinEscolhida_indice)
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i != skinEscolhida_indice)
+                    {
+                        skinsGame[i].SetActive(false);
+                    }
+                    else
+                    {
+                        skinsGame[i].SetActive(true);
+                    }
+                }
+
+                skinLeona.SetActive(false);
+                skinCabecaJoe.SetActive(true);
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
                 {
                     skinsGame[i].SetActive(false);
                 }
-                else
-                {
-                    skinsGame[i].SetActive(true);
-                }
+
+                skinLeona.SetActive(true);
+                skinCabecaJoe.SetActive(false);
+
             }
         }
     }
@@ -87,7 +107,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
     {
         // Debug.Log($"skin escolhida:{skinEscolhida_indice} \nindice objeto atual: {objetoAtual_indice}");
 
-        if (isGame == false)
+        if (isGame == false && isNovel == false)
         {
             // Debug.Log($"INDICE OBJETO ATUAL: {objetoAtual_indice} z STATUS OBJETO ATUAL: {skins_desbloqueadas[objetoAtual_indice]}");
             VerificarCensura();
@@ -99,7 +119,7 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
 
     public void ComprarSkin()
     {
-        if (isGame == false)
+        if (isGame == false && isNovel == false)
         {
             int precoSkin = 600 * (objetoAtual_indice + 1);
 
@@ -212,10 +232,17 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
         if (indice == 0)
         {
             isGame = false;
+            isNovel = false;
         }
         else if (indice == 1) // significa que é o runner
         {
             isGame = true;
+            isNovel = false;
+        }
+        else if (indice == 2)
+        {
+            isGame = false;
+            isNovel = true;
         }
     }
 }

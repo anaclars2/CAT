@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class TouchManager : MonoBehaviour
 {
@@ -19,6 +21,11 @@ public class TouchManager : MonoBehaviour
 
     public void Awake()
     {
+        // inicializando as variáveis
+        startTouchPosition = Vector2.zero;
+        endTouchPosition = Vector2.zero;
+        swipeDirection = Vector2.zero;
+
         // acessando as acoes do new input system, asset TouchScreen
         // em outras palavras, esta obtendo o componente PlayerInput
         // e acessando as acoes de toque definidas
@@ -54,6 +61,7 @@ public class TouchManager : MonoBehaviour
     {
         startTouchPosition = touchPositionAction.ReadValue<Vector2>();
         isSwiping = true;
+        Debug.Log($"TouchStarted - startTouchPosition: {startTouchPosition}");
     }
 
     // é chamado quando o toque termina
@@ -64,6 +72,7 @@ public class TouchManager : MonoBehaviour
         endTouchPosition = touchPositionAction.ReadValue<Vector2>();
         isSwiping = false;
         DetectSwipe();
+        Debug.Log($"TouchEnded - endTouchPosition: {endTouchPosition}");
     }
 
     // calculando a direcao do deslizar e verificando se a magnitude do deslizar é maior que 50 unidades
@@ -71,8 +80,18 @@ public class TouchManager : MonoBehaviour
     // e desenha uma linha vermelha no mundo 3D entre as posicoes inicial e final do toque
     private void DetectSwipe()
     {
+        if (startTouchPosition == endTouchPosition)
+        {
+            Debug.LogWarning("Swipe ignorado: as posições de toque são iguais.");
+            return;
+        }
+
         swipeDirection = endTouchPosition - startTouchPosition;
-        if (swipeDirection.magnitude > 20)
+        Debug.Log("swipeDirection.magnitude: " + swipeDirection.magnitude);
+        Debug.Log("startTouchPosition.magnitude: " + startTouchPosition.magnitude);
+        Debug.Log("endTouchPosition.magnitude: " + endTouchPosition.magnitude);
+
+        if (swipeDirection.magnitude > 50)
         {
             // normalizado é de 0 a 1
             // Debug.Log("Swipe detected: " + swipeDirection.normalized);
@@ -90,7 +109,7 @@ public class TouchManager : MonoBehaviour
 
         // se a magnitude, tamanho do vetor, do touch for menor que 50
         // significa que nao houve deslize
-        else
+        else if (swipeDirection.magnitude < 5)
         {
             if (cheat != null)
             {

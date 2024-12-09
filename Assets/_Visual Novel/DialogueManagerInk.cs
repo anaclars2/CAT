@@ -33,8 +33,10 @@ public class DialogueManagerInk : MonoBehaviour
     [SerializeField] TMP_Text nomeExibicao;
     // public Image spriteExibicaoA, spriteExibicaoB; // onde deve passar as animacoes dos personagem
     public TMP_Text dialogo;
+    public TMP_Text avisoQuest;
 
     const string speakerTAG = "speaker"; // quem esta falando no momento 
+    const string placeTAG = "place", questTAG = "quest", correrTAG = "correrL";
 
     [Header("Sprite")]
     [SerializeField] SkinsManager skinsManager;
@@ -70,14 +72,26 @@ public class DialogueManagerInk : MonoBehaviour
     float minPitch = 0.65f;
     float maxPitch = 2;
 
+    [Header("Background")]
+    [SerializeField] Animator animatorPlace;
+
     // vai randomizar uma primeira vez o valor (tom e clipe) de uma letra, exemplo "a"
     // e o reutilizar sempre o mesmo valor deixando parecido com uma alfabeto
     [SerializeField] bool deixarPrevisivel;
+
+    [Header("Quests")]
+    string questKey = "";
+    bool questAtiva = false;
+    public bool terminarQuest = false;
+    [SerializeField] string textoQuest = "Você deve jogar 3 partidas para desbloquear o restante da história";
 
     private void Awake()
     {
         audioSource = GameObject.Find("AudioSourceSFX").GetComponent<AudioSource>();
         if (audioSource == null) { Debug.Log("nao consegui achar audioSource"); }
+
+        skinsManager = GameObject.Find("InterfaceManager").GetComponent<SkinsManager>();
+        if (skinsManager == null) { Debug.Log("nao consegui achar skinsManager"); }
     }
 
     private void Start()
@@ -98,6 +112,16 @@ public class DialogueManagerInk : MonoBehaviour
 
     private void Update()
     {
+        if (terminarQuest == true || GameManager.Instance.partidasQuest == 3)
+        {
+            questAtiva = false;
+            GameManager.Instance.partidasQuest = 0;
+            if (GameManager.Instance.lunaCorrendo == true)
+            {
+                GameManager.Instance.lunaCorrendo = false;
+            }
+        }
+
         #region TypeWritter
         // efeito maquina de escrever
         if (efeitoMaquina == true && indiceChar < textoAtual.Length)
@@ -246,13 +270,30 @@ public class DialogueManagerInk : MonoBehaviour
 
     public void ContinuarDialogo()
     {
-        if (dialogo.text.Length < textoAtual.Length)
+        if (questAtiva == true)
+        {
+            Debug.Log("quest A atIVA");
+            avisoQuest.gameObject.SetActive(true);
+            dialogo.gameObject.SetActive(false);
+            avisoQuest.text = textoQuest;
+            nomeExibicao.text = "Informação";
+
+            animatorSprite_Joe.gameObject.SetActive(false);
+            animatorSprite_Luna.gameObject.SetActive(false);
+        }
+        else
+        {
+            avisoQuest.gameObject.SetActive(false);
+            dialogo.gameObject.SetActive(true);
+        }
+
+        if (dialogo.text.Length < textoAtual.Length && questAtiva == false)
         {
             // mostrar o texto completo da fala atual se ele ainda nao estiver completo
             dialogo.text = textoAtual;
             efeitoMaquina = false;
         }
-        else if (historiaAtual.canContinue)
+        else if (historiaAtual.canContinue && questAtiva == false)
         {
             // limpando o texto e o estado atual antes de exibir a nova fala
             dialogo.text = "";
@@ -357,6 +398,26 @@ public class DialogueManagerInk : MonoBehaviour
                         isJoe = false;
                         narradorSom = true;
                     }
+                    else if (tagValor == "???" || tagValor == "Luna")
+                    {
+                        mudarSprite = true;
+                        isJoe = false;
+                        isLuna = true;
+                        narradorSom = false;
+
+                        animatorSprite_Joe.gameObject.SetActive(false);
+                        animatorSprite_Luna.gameObject.SetActive(true);
+                    }
+                    else if (tagValor == "Joe")
+                    {
+                        mudarSprite = true;
+                        isJoe = true;
+                        isLuna = false;
+                        narradorSom = false;
+
+                        animatorSprite_Joe.gameObject.SetActive(true);
+                        animatorSprite_Luna.gameObject.SetActive(false);
+                    }
                     break;
 
                 #region Se eu quiser que o arquivo ink determine os sprites 
@@ -409,17 +470,26 @@ public class DialogueManagerInk : MonoBehaviour
                     isLuna = false;
                     narradorSom = false;
 
-                    if (skinsManager != null)
+                    if (skinsManager == null)
+                    {
+                        Debug.Log("Skin manager nulo");
+                    }
+
+                    // se portraitJoe:normal fica normal, se for portrait:sorrindo ele sorri
+                    else if (skinsManager != null)
                     {
                         switch (skinsManager.skinEscolhida_indice)
                         {
                             case 0: // skin base
                                 spriteValor_NaoFalar = "joe-base-normal";
                                 spriteValor_Falar = "joe-base-falando";
+                                Debug.Log("Skin escolhida nao-falar:" + spriteValor_NaoFalar);
+                                Debug.Log("Skin escolhida falar:" + spriteValor_Falar);
 
                                 if (tagValor == "sorrindo")
                                 {
                                     spriteValor_NaoFalar = "joe-base-sorrindo";
+                                    Debug.Log("Skin escolhida sorrir:" + spriteValor_NaoFalar);
                                 }
                                 break;
 
@@ -448,6 +518,24 @@ public class DialogueManagerInk : MonoBehaviour
                     mudarSprite = true;
                     break;
 
+                case placeTAG:
+                    // animatorPlace.Play(tagValor);
+                    break;
+
+                case questTAG:
+                    // visual novel > jogar 3x partidas > desbloquea resto
+                    if (questAtiva == false)
+                    { GameManager.Instance.partidasQuest = 0; }
+
+                    questKey = tagValor;
+                    questAtiva = true;
+                    break;
+                case correrTAG:
+                    if (tagValor == "true") // se a luna for correr
+                    {
+                        GameManager.Instance.lunaCorrendo = true;
+                    }
+                    break;
                 default:
                     Debug.Log("tag estranha: " + tagValor);
                     break;

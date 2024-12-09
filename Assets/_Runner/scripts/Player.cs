@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class Player : MonoBehaviour
 
     [Header("Animacao")]
     [SerializeField] Animator[] animator;
+    [SerializeField] Animator animatorLuna;
     // public AnimationClip[] animationClip;
 
     [Header("Movimentacao")]
@@ -212,10 +211,17 @@ public class Player : MonoBehaviour
                     soundManager.SomPular();
                     posicao_alvo = new Vector3(transform.position.x, altura_pulo, posicao_base.z);
                     escorregou_pulou = true;
-                    foreach (Animator a in animator)
+                    if (manager.lunaCorrendo != true)
                     {
-                        if (a.gameObject.activeInHierarchy == true)
-                            a.SetTrigger("pulou");
+                        foreach (Animator a in animator)
+                        {
+                            if (a.gameObject.activeInHierarchy == true)
+                                a.SetTrigger("pulou");
+                        }
+                    }
+                    else
+                    {
+                        animatorLuna.SetTrigger("pulou");
                     }
                 }
             }
@@ -241,11 +247,11 @@ public class Player : MonoBehaviour
             recentemente_machucado = true;
             if (power_invulnerabilidade == false && cheat_vida_infinita == false)
             {
-                foreach (Animator a in animator)
-                {
-                    a.SetTrigger("dano");
+                /* foreach (Animator a in animator)
+                 {
+                     a.SetTrigger("dano");
 
-                }
+                 }*/
                 machucado++;
                 soundManager.SomDano();
             }
@@ -254,17 +260,34 @@ public class Player : MonoBehaviour
             {
                 if (montariaLuna != true)
                 {
-                    foreach (Animator a in animator)
+                    if (manager.lunaCorrendo != true)
                     {
-                        a.SetTrigger("morreu");
+                        foreach (Animator a in animator)
+                        {
+                            a.SetTrigger("morreu");
+                        }
                     }
+                    else
+                    {
+                        animatorLuna.SetTrigger("morreu");
+                    }
+
                 }
                 else
                 {
 
                 }
+
                 // se ele morrer 
-                soundManager.SomMorrer();
+                if (manager.lunaCorrendo != true)
+                {
+                    soundManager.SomMorrerJoe();
+                } 
+                else
+                {
+                    soundManager.SomMorrerLuna();
+                }
+
                 parar_input_player = true;
                 ObjectManager.moveSpeed = 0f;
                 backScroller[0].scrollSpeed = 0f;

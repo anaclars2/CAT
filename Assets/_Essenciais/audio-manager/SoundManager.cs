@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
     {
         audioController.TocarSFX(1);
     }
-    public void SomMorrer()
+    public void SomMorrerJoe()
     {
         audioController.TocarSFX(2);
     }
@@ -87,5 +87,9 @@ public class SoundManager : MonoBehaviour
     public void SomDano()
     {
         audioController.TocarSFX(9);
+    }
+    public void SomMorrerLuna()
+    {
+        audioController.TocarSFX(3);
     }
 }
