@@ -196,7 +196,7 @@ MonoBehaviour:
   sfxSource: {fileID: 187457039076048387}
   music:
   - {fileID: 8300000, guid: c65b684674a89f64bb62f030e07c3c76, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: b1946fdb0333c074e804014ff5978f26, type: 3}
   sfx:
   - {fileID: 8300000, guid: 1452a3a4ffcbfb941972d1ec28bbcf3d, type: 3}
   - {fileID: 8300000, guid: c91d990be3c66eb4d9bbb63b1c803b29, type: 3}

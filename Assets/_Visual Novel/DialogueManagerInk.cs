@@ -7,6 +7,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using System.IO;
+
 
 public class DialogueManagerInk : MonoBehaviour
 {
@@ -34,6 +36,7 @@ public class DialogueManagerInk : MonoBehaviour
     // public Image spriteExibicaoA, spriteExibicaoB; // onde deve passar as animacoes dos personagem
     public TMP_Text dialogo;
     public TMP_Text avisoQuest;
+    public TMP_Text avisoNome;
 
     const string speakerTAG = "speaker"; // quem esta falando no momento 
     const string placeTAG = "place", questTAG = "quest", correrTAG = "correrL";
@@ -74,6 +77,8 @@ public class DialogueManagerInk : MonoBehaviour
 
     [Header("Background")]
     [SerializeField] Animator animatorPlace;
+    [SerializeField] Image fadeImage;
+    float fadeDuration = 1f; 
 
     // vai randomizar uma primeira vez o valor (tom e clipe) de uma letra, exemplo "a"
     // e o reutilizar sempre o mesmo valor deixando parecido com uma alfabeto
@@ -81,9 +86,7 @@ public class DialogueManagerInk : MonoBehaviour
 
     [Header("Quests")]
     string questKey = "";
-    bool questAtiva = false;
     public bool terminarQuest = false;
-    [SerializeField] string textoQuest = "Você deve jogar 3 partidas para desbloquear o restante da história";
 
     private void Awake()
     {
@@ -97,7 +100,8 @@ public class DialogueManagerInk : MonoBehaviour
     private void Start()
     {
         dialogo.text = "";
-        IniciarDialogo();
+        CarregarAoIniciar();
+        ContinuarDialogo();
 
         textoEscolhas = new TMP_Text[escolhas.Length];
         int i = 0;
@@ -114,7 +118,7 @@ public class DialogueManagerInk : MonoBehaviour
     {
         if (terminarQuest == true || GameManager.Instance.partidasQuest == 3)
         {
-            questAtiva = false;
+            GameManager.Instance.questAtiva = false;
             GameManager.Instance.partidasQuest = 0;
             if (GameManager.Instance.lunaCorrendo == true)
             {
@@ -166,6 +170,12 @@ public class DialogueManagerInk : MonoBehaviour
         #endregion
 
         MudarSprite();
+
+        if (GameManager.Instance.questAtiva == true && GameManager.Instance.partidasQuest == 0)
+        {
+            escolhas[0].SetActive(false);
+            escolhas[1].SetActive(false);
+        }
     }
 
     void MudarSprite()
@@ -255,11 +265,12 @@ public class DialogueManagerInk : MonoBehaviour
         }
     }
 
-    public void IniciarDialogo()
-    {
-        historiaAtual = new Story(inkJSON.text);
-        ContinuarDialogo();
-    }
+    /*  public void IniciarDialogo()
+      {
+          historiaAtual = new Story(inkJSON.text);
+
+          ContinuarDialogo();
+      }*/
 
     public void IniciarDialogo(TextAsset _inkJSON)
     {
@@ -270,13 +281,15 @@ public class DialogueManagerInk : MonoBehaviour
 
     public void ContinuarDialogo()
     {
-        if (questAtiva == true)
+        if (GameManager.Instance.questAtiva == true)
         {
             Debug.Log("quest A atIVA");
             avisoQuest.gameObject.SetActive(true);
+            avisoNome.gameObject.SetActive(true);
             dialogo.gameObject.SetActive(false);
-            avisoQuest.text = textoQuest;
-            nomeExibicao.text = "Informação";
+            nomeExibicao.gameObject.SetActive(false);
+
+            avisoQuest.text = "Você deve jogar 3 partidas para desbloquear o restante da história";
 
             animatorSprite_Joe.gameObject.SetActive(false);
             animatorSprite_Luna.gameObject.SetActive(false);
@@ -285,15 +298,17 @@ public class DialogueManagerInk : MonoBehaviour
         {
             avisoQuest.gameObject.SetActive(false);
             dialogo.gameObject.SetActive(true);
+            avisoNome.gameObject.SetActive(false);
+            nomeExibicao.gameObject.SetActive(true);
         }
 
-        if (dialogo.text.Length < textoAtual.Length && questAtiva == false)
+        if (dialogo.text.Length < textoAtual.Length && GameManager.Instance.questAtiva == false)
         {
             // mostrar o texto completo da fala atual se ele ainda nao estiver completo
             dialogo.text = textoAtual;
             efeitoMaquina = false;
         }
-        else if (historiaAtual.canContinue && questAtiva == false)
+        else if (historiaAtual.canContinue && GameManager.Instance.questAtiva == false)
         {
             // limpando o texto e o estado atual antes de exibir a nova fala
             dialogo.text = "";
@@ -306,51 +321,57 @@ public class DialogueManagerInk : MonoBehaviour
             ManipularTag(historiaAtual.currentTags); // sprite
             efeitoMaquina = true;
         }
-        else
-        {
-            efeitoMaquina = false;
-            if (!escolhasAtivas)
-                DesativarDialogo();
-        }
-    }
+        /* else
+         {
+             efeitoMaquina = false;
+             if (!escolhasAtivas)
+                 dialogo.text = "";
 
-    public void DesativarDialogo()
-    {
-        dialogo.text = "";
+         }*/
+
+        SalvarHistoria();
     }
 
     public void MostrarEscolhas()
     {
-        List<Choice> escolhasAtuais = historiaAtual.currentChoices;
-        if (escolhasAtuais.Count > 0)
+        if (GameManager.Instance.questAtiva == false)
         {
-            escolhasAtivas = true;
+            List<Choice> escolhasAtuais = historiaAtual.currentChoices;
+            if (escolhasAtuais.Count > 0)
+            {
+                escolhasAtivas = true;
+            }
+            else
+            {
+                escolhasAtivas = false;
+            }
+
+            if (escolhasAtuais.Count > escolhas.Length)
+            {
+                Debug.LogError("Mais escolhas que a interface suporta :D Não tem gameobject textmeshpro para todos");
+            }
+            else
+            {
+                int i = 0;
+                foreach (Choice escolha in escolhasAtuais)
+                {
+                    escolhas[i].gameObject.SetActive(true);
+                    textoEscolhas[i].text = escolha.text;
+                    i++;
+                }
+
+                for (int j = i; j < escolhas.Length; j++)
+                {
+                    escolhas[j].gameObject.SetActive(false);
+                }
+
+                // StartCoroutine(PrimeiraEscolhaSelecionada());
+            }
         }
         else
         {
-            escolhasAtivas = false;
-        }
-
-        if (escolhasAtuais.Count > escolhas.Length)
-        {
-            Debug.LogError("Mais escolhas que a interface suporta :D Não tem gameobject textmeshpro para todos");
-        }
-        else
-        {
-            int i = 0;
-            foreach (Choice escolha in escolhasAtuais)
-            {
-                escolhas[i].gameObject.SetActive(true);
-                textoEscolhas[i].text = escolha.text;
-                i++;
-            }
-
-            for (int j = i; j < escolhas.Length; j++)
-            {
-                escolhas[j].gameObject.SetActive(false);
-            }
-
-            // StartCoroutine(PrimeiraEscolhaSelecionada());
+            escolhas[0].SetActive(false);
+            escolhas[1].SetActive(false);
         }
     }
 
@@ -519,17 +540,18 @@ public class DialogueManagerInk : MonoBehaviour
                     break;
 
                 case placeTAG:
-                    // animatorPlace.Play(tagValor);
+                    FadeChangeBackground(tagValor);
                     break;
 
                 case questTAG:
                     // visual novel > jogar 3x partidas > desbloquea resto
-                    if (questAtiva == false)
+                    if (GameManager.Instance.questAtiva == false)
                     { GameManager.Instance.partidasQuest = 0; }
 
                     questKey = tagValor;
-                    questAtiva = true;
+                    GameManager.Instance.questAtiva = true;
                     break;
+
                 case correrTAG:
                     if (tagValor == "true") // se a luna for correr
                     {
@@ -542,5 +564,97 @@ public class DialogueManagerInk : MonoBehaviour
 
             }
         }
+    }
+
+
+    public void FadeChangeBackground(string cenario)
+    {
+        StartCoroutine(FadeOutAndChangeBackground(cenario));
+    }
+    IEnumerator FadeOutAndChangeBackground(string cenario)
+    {
+        // Faz o fade-out (aumenta a opacidade)
+        yield return StartCoroutine(Fade(0, 0.5f));
+
+        // Muda o background
+        animatorPlace.Play(cenario);
+
+        // Faz o fade-in (diminui a opacidade)
+        yield return StartCoroutine(Fade(1, 0));
+    }
+    IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        Color color = fadeImage.color;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            fadeImage.color = new Color(color.r, color.g, color.b, alpha);
+            yield return null;
+        }
+
+        // Garante que a opacidade final seja exatamente a esperada
+        fadeImage.color = new Color(color.r, color.g, color.b, endAlpha);
+    }
+
+
+    const string nomeArquivo = "InkStoryState.json";
+    int indiceFalaAnterior = -1;
+
+    public void SalvarHistoria()
+    {
+        if (historiaAtual == null)
+        {
+            Debug.LogError("Não há história atual para salvar.");
+            return;
+        }
+
+        // Serializa o estado da história
+        string estadoSerializado = historiaAtual.state.ToJson();
+
+        // Caminho completo do arquivo de salvamento
+        string caminhoArquivo = System.IO.Path.Combine(Application.persistentDataPath, nomeArquivo);
+
+        // Salva o estado no arquivo
+        File.WriteAllText(caminhoArquivo, estadoSerializado);
+        Debug.Log($"Estado salvo em: {caminhoArquivo}");
+    }
+
+    public void CarregarHistoria()
+    {
+        // Caminho completo do arquivo de salvamento
+        string caminhoArquivo = System.IO.Path.Combine(Application.persistentDataPath, nomeArquivo);
+
+        // Verifica se o arquivo existe
+        if (!File.Exists(caminhoArquivo))
+        {
+            Debug.LogWarning("Nenhum arquivo de estado salvo encontrado.");
+            return;
+        }
+
+        // Lê o estado do arquivo
+        string estadoSerializado = File.ReadAllText(caminhoArquivo);
+
+        // Restaura o estado na história atual
+        if (historiaAtual != null)
+        {
+            historiaAtual.state.LoadJson(estadoSerializado);
+            Debug.Log("Estado carregado com sucesso.");
+        }
+        else
+        {
+            Debug.LogError("História atual é nula. Não foi possível carregar o estado.");
+        }
+    }
+
+    public void CarregarAoIniciar()
+    {
+        if (historiaAtual == null)
+        {
+            historiaAtual = new Story(inkJSON.text);
+        }
+        CarregarHistoria();
     }
 }

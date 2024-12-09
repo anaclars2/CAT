@@ -12,9 +12,10 @@ public class GameData
     public int total_powerups;
     public int total_moedas;
     public bool desviou_frutas;
-    public int skinEscolhida_indice;
+    public int skinEscolhida_indice; 
 
-    public string progresso_historia; // public int fala_atual
+    public bool questAtiva;
+    // public int partidasQuest;
 
     // quando comecar um novo jogo os valores nesse construtor
     // seram os valores padroes/iniciais
@@ -39,6 +40,7 @@ public class GameData
         this.desviou_frutas = false;
         this.total_powerups = 0;
 
-        this.progresso_historia = "";
+        this.questAtiva = false;
+        // this.partidasQuest = 0;
     }
 }

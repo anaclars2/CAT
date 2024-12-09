@@ -7,10 +7,7 @@ public class ObstaculosDinamicos : MonoBehaviour
     // ideia do script
     // movimentar a caminhonete e tambem instanciar as frutas-obstaculos
 
-    public bool caminhonete = false;
-    public bool fruta = false;
-    public GameObject[] frutas;
-    float timer = 0f, cooldown = 4f;
+    [SerializeField] bool fruta = false;
 
     float velocidadeFrontal = 25f;
     float movimentoArco = 12f;
@@ -19,24 +16,7 @@ public class ObstaculosDinamicos : MonoBehaviour
 
     void Update()
     {
-        if (caminhonete == true)
-        {
-            // movimento do inimigo
-            transform.position = transform.position + new Vector3(0, 0, 10) * Time.deltaTime;
-
-            // instanciando as frutas-obstaculos
-            if (timer >= 0f)
-            {
-                timer = timer + Time.deltaTime;
-                if (timer >= cooldown)
-                {
-                    InstanciarFrutas();
-                    // resetando o timer
-                    timer = 0f;
-                }
-            }
-        }
-        else if (fruta == true)
+        if (fruta == true)
         {
             // movimento do obstaculo
             // transform.position = transform.position + new Vector3(0, 0, -15) * Time.deltaTime;
@@ -54,11 +34,5 @@ public class ObstaculosDinamicos : MonoBehaviour
                 // Destroy(gameObject);
             }
         }
-    }
-
-    void InstanciarFrutas()
-    {
-        int i = (int)UnityEngine.Random.Range(0, frutas.Length);
-        Instantiate(frutas[i]);
     }
 }

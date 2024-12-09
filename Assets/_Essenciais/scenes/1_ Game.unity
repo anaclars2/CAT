@@ -1999,7 +1999,7 @@ MonoBehaviour:
   isGame: 1
   isNovel: 0
   skins_desbloqueadas: 000000
-  gameManager: {fileID: 1711046305}
+  gameManager: {fileID: 0}
   censura: {fileID: 0}
   skinLeona: {fileID: 1015736418}
   skinCabecaJoe: {fileID: 2069465149}
@@ -2752,6 +2752,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &729486907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 367094214629914291, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_Name
+      value: CaminhoneteFrutas
+      objectReference: {fileID: 0}
+    - target: {fileID: 367094214629914291, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367094214629914291, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.4903603
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.4525158
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.4525158
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032448646319025161, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+--- !u!1 &729486908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 367094214629914291, guid: ef5ade21e42ec1b4a98c6f247fec3e6d, type: 3}
+  m_PrefabInstance: {fileID: 729486907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &743827739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,7 +3264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundManager: {fileID: 615119331}
-  manager: {fileID: 1711046305}
+  manager: {fileID: 0}
   powerManager: {fileID: 379695806}
   touch: {fileID: 1897787134}
   animator:
@@ -3205,6 +3291,7 @@ MonoBehaviour:
   - {fileID: 1058799822}
   danoFrutas: 0
   modoFrutas: 0
+  peixeMoedasPartida: 0
 --- !u!65 &969056189
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3866,8 +3953,17 @@ MonoBehaviour:
   - {fileID: 4109444722353158111, guid: 84a52f5ebdbd8a74db1098e93c25fa43, type: 3}
   - {fileID: 7299582550412638111, guid: 04d3e3af2679406468935a4704f2a834, type: 3}
   - {fileID: 4546412493840892981, guid: 27eab8571b467f94c8686cca02a25802, type: 3}
+  - {fileID: 1081066451013580957, guid: 4a3fa90324687f841b55a8ed17c094be, type: 3}
+  - {fileID: 8439711252518917463, guid: 08d91c5fb528b7e4aafc833c9a33691d, type: 3}
   powerUp: {fileID: 3410452739757676307, guid: 063beff34971dfd4f8a4a3fec981bc69, type: 3}
+  fruta:
+  - {fileID: 139615302996995529, guid: 51c878411d84444428c5d5369d619e60, type: 3}
+  - {fileID: 9024487559278081760, guid: 9c5d8298a1db07841924e03cccdcac32, type: 3}
+  - {fileID: 7179316592996035975, guid: b91750ef78e8e764987486b0b3d59a10, type: 3}
+  caminhonete: {fileID: 729486908}
+  caminhoneteAtiva: 0
   intervaloInstanciar_blocos: 3
+  intervaloInstanciar_frutas: 1
   intervaloInstanciar_poweup: 20
   player: {fileID: 969056188}
 --- !u!114 &1206461942 stripped
@@ -5384,58 +5480,6 @@ Transform:
   - {fileID: 1819125784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &1711046303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1711046306}
-  - component: {fileID: 1711046305}
-  m_Layer: 0
-  m_Name: GeneralManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1711046305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711046303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287d69f60c508f94aa86406fcb5a89be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peixe_moeda: 0
-  powerups: 0
-  powerupsPartida: 0
-  partidasQuest: 0
-  menu: {fileID: 0}
-  skins: {fileID: 0}
-  skinsAtiva: 0
-  lunaCorrendo: 0
---- !u!4 &1711046306
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711046303}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1730163748
 GameObject:
   m_ObjectHideFlags: 0
@@ -8351,7 +8395,7 @@ PrefabInstance:
     - target: {fileID: 8605026909186941951, guid: 1c825b2cffb4c5142a23169a8f21bcf7, type: 3}
       propertyPath: manager
       value: 
-      objectReference: {fileID: 1711046305}
+      objectReference: {fileID: 0}
     - target: {fileID: 8605026909186941951, guid: 1c825b2cffb4c5142a23169a8f21bcf7, type: 3}
       propertyPath: animator
       value: 
@@ -8372,6 +8416,10 @@ PrefabInstance:
       propertyPath: pontuacaoDistancia
       value: 
       objectReference: {fileID: 379695807}
+    - target: {fileID: 8605026909186941951, guid: 1c825b2cffb4c5142a23169a8f21bcf7, type: 3}
+      propertyPath: textoMissoes.Array.data[5]
+      value: Pegue 50 peixe-moedas antes de morrer para as frutas.
+      objectReference: {fileID: 0}
     - target: {fileID: 8605026909186941951, guid: 1c825b2cffb4c5142a23169a8f21bcf7, type: 3}
       propertyPath: estrelaImagem.Array.data[0]
       value: 
@@ -8882,6 +8930,11 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetVolumeSFX
       objectReference: {fileID: 0}
+    - target: {fileID: 7356059532761159962, guid: 4ed723f37b9d34c4891c66aa3f0e12b2, type: 3}
+      propertyPath: m_text
+      value: "<b>S\xF3 no sach\xEA</b>\nPegue 50 peixe-moedas antes de morrer para
+        as frutas."
+      objectReference: {fileID: 0}
     - target: {fileID: 7536996712182333979, guid: 4ed723f37b9d34c4891c66aa3f0e12b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -9028,11 +9081,11 @@ SceneRoots:
   - {fileID: 615119330}
   - {fileID: 457453347}
   - {fileID: 1897787133}
-  - {fileID: 1711046306}
   - {fileID: 4748042860418606140}
   - {fileID: 379695805}
   - {fileID: 1117739440}
   - {fileID: 1395491579}
+  - {fileID: 729486907}
   - {fileID: 123369675}
   - {fileID: 7004909515493673644}
   - {fileID: 1679457538}

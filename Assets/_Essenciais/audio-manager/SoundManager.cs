@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class SoundManager : MonoBehaviour
 
     // lista de musicas
     // 0 - fazenda
-    // 1 - segunda chance
+    // 1 - resto
 
+    int b = 3;
     [HideInInspector] public static SoundManager Instance;
     private void Awake()
     {
@@ -25,16 +27,32 @@ public class SoundManager : MonoBehaviour
         // audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         if (audioController == null) { Debug.Log("AudioController nulo"); }
     }
+    private void Update()
+    {
+        int a = SceneManager.GetActiveScene().buildIndex;
+        if (a != b)
+        {
+            b = a;
+            if (a == 1)
+            {
+                MusicaFazenda();
+            }
+            else
+            {
+                MusicaPadrao();
+            }
+        }
+
+    }
 
     public void MusicaFazenda()
     {
         audioController.TocarMusic(0);
     }
-    public void MusicaSegundaChance()
+    public void MusicaPadrao()
     {
         audioController.TocarMusic(1);
     }
-
 
     // lista de efeitos sonoros
     // 0 - clickar

@@ -50,6 +50,15 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
         {
             AtualizarIndices(skinEscolhida_indice);
         }
+        if (gameManager == null)
+        {
+            gameManager = GameObject.Find("GeneralManager").GetComponent<GameManager>();
+        }
+
+        if (gameManager == null)
+        {
+            Debug.Log($"gamemanager nulo");
+        }
     }
 
     void Start()
@@ -91,6 +100,8 @@ public class SkinsManager : MonoBehaviour, IDataPersistence
             }
             else
             {
+                Debug.Log($"AAA nulo");
+
                 for (int i = 0; i < 3; i++)
                 {
                     skinsGame[i].SetActive(false);

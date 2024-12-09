@@ -1,0 +1,248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &263008943606788979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231179960609113354}
+  - component: {fileID: 2202421226607087525}
+  - component: {fileID: 7509763385474242010}
+  - component: {fileID: 2374710999365339022}
+  m_Layer: 0
+  m_Name: triggerArvore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231179960609113354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263008943606788979}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 344140478154196488}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2202421226607087525
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263008943606788979}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 20, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7509763385474242010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263008943606788979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64780b6e416b2e24e80626fa569f78ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameObject: 1
+  isInstanciador: 0
+  rotacionar180: 0
+  blocosDesign: []
+  powerUp: {fileID: 0}
+  fruta: []
+  caminhonete: {fileID: 0}
+  caminhoneteAtivo: 0
+  intervaloInstanciar_blocos: 2
+  intervaloInstanciar_frutas: 1
+  intervaloInstanciar_poweup: 15
+  player: {fileID: 0}
+--- !u!114 &2374710999365339022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263008943606788979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678c48c0e4ef27d41b6418accc27ee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trator: 0
+  animatorTrator: {fileID: 0}
+  arvore: 1
+  animatorArvore: {fileID: 3394034347212760221}
+--- !u!1 &8439711252518917463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344140478154196488}
+  m_Layer: 0
+  m_Name: bloco-06
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344140478154196488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439711252518917463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1231179960609113354}
+  - {fileID: 186705766944031627}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8983089988907062261
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 344140478154196488}
+    m_Modifications:
+    - target: {fileID: 8464171951125646020, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_Name
+      value: ArvoreCair
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.190218
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8464171951125646020, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3394034347212760221}
+    - targetCorrespondingSourceObject: {fileID: 8464171951125646020, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7368706410251270644}
+  m_SourcePrefab: {fileID: 100100000, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+--- !u!4 &186705766944031627 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9096452282825511038, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+  m_PrefabInstance: {fileID: 8983089988907062261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &710617987811842353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8464171951125646020, guid: 48471c56e4f519a459a1fa8af305f1b9, type: 3}
+  m_PrefabInstance: {fileID: 8983089988907062261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3394034347212760221
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710617987811842353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5b2dd6ca6234e84da3ce2f9619651a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7368706410251270644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710617987811842353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64780b6e416b2e24e80626fa569f78ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameObject: 1
+  isInstanciador: 0
+  rotacionar180: 1
+  blocosDesign: []
+  powerUp: {fileID: 0}
+  fruta: []
+  caminhonete: {fileID: 0}
+  caminhoneteAtivo: 0
+  intervaloInstanciar_blocos: 2
+  intervaloInstanciar_frutas: 1
+  intervaloInstanciar_poweup: 15
+  player: {fileID: 0}

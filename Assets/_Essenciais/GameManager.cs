@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public int peixe_moeda;
     public int powerups;
     public int powerupsPartida;
-    [HideInInspector] public int partidasQuest = 0;
+    public int partidasQuest = 0;
     public static GameManager Instance;
     [SerializeField] GameObject menu;
     [SerializeField] GameObject skins;
     [HideInInspector] public bool skinsAtiva = false;
     public bool lunaCorrendo;
+    public bool questAtiva = false;
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         data.total_moedas = this.peixe_moeda;
         data.total_powerups = this.powerups;
+        data.questAtiva = this.questAtiva;
+
     }
 
     public void LoadData(GameData data)
@@ -42,6 +45,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         // implementando a logica de carregar os valores
         this.peixe_moeda = data.total_moedas;
         this.powerups = data.total_powerups;
+        this.questAtiva = data.questAtiva;
+
     }
 
     void OnEnable()

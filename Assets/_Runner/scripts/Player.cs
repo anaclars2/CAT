@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public int danoFrutas = 0;
     [HideInInspector] public bool modoFrutas = false;
 
-    int peixeMoedasPartida = 0;
+    [HideInInspector] public int peixeMoedasPartida = 0;
     void Awake()
     {
         // retornando tudo p valor original
@@ -234,7 +234,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // executa as acoes apos o atraso
-        soundManager.MusicaSegundaChance();
         tela_game.SetActive(false);
         tela_info.SetActive(true);
         Time.timeScale = 0f;
@@ -282,7 +281,7 @@ public class Player : MonoBehaviour
                 if (manager.lunaCorrendo != true)
                 {
                     soundManager.SomMorrerJoe();
-                } 
+                }
                 else
                 {
                     soundManager.SomMorrerLuna();
@@ -299,6 +298,7 @@ public class Player : MonoBehaviour
             if (other.gameObject.CompareTag("Fruta"))
             {
                 danoFrutas++;
+                Debug.Log("tomou dano fruta");
             }
         }
 

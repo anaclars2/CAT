@@ -61,7 +61,7 @@ public class TouchManager : MonoBehaviour
     {
         startTouchPosition = touchPositionAction.ReadValue<Vector2>();
         isSwiping = true;
-        Debug.Log($"TouchStarted - startTouchPosition: {startTouchPosition}");
+        // Debug.Log($"TouchStarted - startTouchPosition: {startTouchPosition}");
     }
 
     // é chamado quando o toque termina
@@ -72,7 +72,7 @@ public class TouchManager : MonoBehaviour
         endTouchPosition = touchPositionAction.ReadValue<Vector2>();
         isSwiping = false;
         DetectSwipe();
-        Debug.Log($"TouchEnded - endTouchPosition: {endTouchPosition}");
+        // Debug.Log($"TouchEnded - endTouchPosition: {endTouchPosition}");
     }
 
     // calculando a direcao do deslizar e verificando se a magnitude do deslizar é maior que 50 unidades
@@ -87,9 +87,9 @@ public class TouchManager : MonoBehaviour
         }
 
         swipeDirection = endTouchPosition - startTouchPosition;
-        Debug.Log("swipeDirection.magnitude: " + swipeDirection.magnitude);
-        Debug.Log("startTouchPosition.magnitude: " + startTouchPosition.magnitude);
-        Debug.Log("endTouchPosition.magnitude: " + endTouchPosition.magnitude);
+        // Debug.Log("swipeDirection.magnitude: " + swipeDirection.magnitude);
+        // Debug.Log("startTouchPosition.magnitude: " + startTouchPosition.magnitude);
+        // Debug.Log("endTouchPosition.magnitude: " + endTouchPosition.magnitude);
 
         if (swipeDirection.magnitude > 50)
         {

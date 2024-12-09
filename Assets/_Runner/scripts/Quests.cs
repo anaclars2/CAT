@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Quests : MonoBehaviour, IDataPersistence
 {
@@ -27,11 +28,13 @@ public class Quests : MonoBehaviour, IDataPersistence
     [SerializeField] Player player;
     [SerializeField] GameManager manager;
     [SerializeField] SkinsManager skinManager;
+    [SerializeField] ObjectManager objectManager;
     [HideInInspector] public bool cheatAtivo;
 
     private void Awake()
     {
         skinManager = GetComponent<SkinsManager>();
+        objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
     }
     private void Start()
     {
@@ -101,11 +104,11 @@ public class Quests : MonoBehaviour, IDataPersistence
             AtualizarPopUp(1);
             // Debug.Log("ativeiMissao");
         }
-        /*if ((!missoes_concluidas[2] && pontuacaoDistancia.pontosTotais >= 1200) || cheatAtivo == true) // missao 3
+        if ((!missoes_concluidas[2] && GameManager.Instance.lunaCorrendo == true) || cheatAtivo == true) // missao 3
         {
             missoes_concluidas[2] = true;
             AtualizarPopUp(2);
-        }*/
+        }
         if ((!missoes_concluidas[3] && pontuacaoDistancia.pontosTotais >= 1200) || cheatAtivo == true) // missao 4
         {
             missoes_concluidas[3] = true;
@@ -116,12 +119,12 @@ public class Quests : MonoBehaviour, IDataPersistence
             missoes_concluidas[4] = true;
             AtualizarPopUp(4);
         }
-        if ((!missoes_concluidas[5] && (player.modoFrutas == true && player.danoFrutas == 0)) || cheatAtivo == true) // missao 6
+        if ((!missoes_concluidas[5] && (player.modoFrutas == true && player.peixeMoedasPartida == 50)) || cheatAtivo == true) // missao 6
         {
             missoes_concluidas[5] = true;
             AtualizarPopUp(5);
         }
-        if ((!missoes_concluidas[6] && manager.peixe_moeda == 350) || cheatAtivo == true)// missao 7
+        if ((!missoes_concluidas[6] && player.peixeMoedasPartida == 350) || cheatAtivo == true)// missao 7
         {
             missoes_concluidas[6] = true;
             AtualizarPopUp(6);
